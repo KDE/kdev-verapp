@@ -1,0 +1,4 @@
+File=globalsettings.kcfg
+NameSpace=verapp
+ClassName=GlobalSettings
+Singleton=true

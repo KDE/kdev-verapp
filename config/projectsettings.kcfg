@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+
+  <include>"parameters.h"</include>
+
+  <group name="Verapp">
+
+    <entry name="rule$(Idx)" type="bool" key="rule$(Idx)">
+    <parameter name="Idx" type="UInt" max="26">
+      <values>
+        <value>F001</value>
+        <value>F002</value>
+
+        <value>L001</value>
+        <value>L002</value>
+        <value>L003</value>
+        <value>L004</value>
+        <value>L005</value>
+        <value>L006</value>
+
+        <value>T001</value>
+        <value>T002</value>
+        <value>T003</value>
+        <value>T004</value>
+        <value>T005</value>
+        <value>T006</value>
+        <value>T007</value>
+        <value>T008</value>
+        <value>T009</value>
+        <value>T010</value>
+        <value>T011</value>
+        <value>T012</value>
+        <value>T013</value>
+        <value>T014</value>
+        <value>T015</value>
+        <value>T016</value>
+        <value>T017</value>
+        <value>T018</value>
+        <value>T019</value>
+      </values>
+    </parameter>
+    <default code="true">defaults::isRuleEnabled((rules::Type)$(Idx))</default>
+    </entry>
+
+    <entry name="fileFilter" key="fileFilter" type="String">
+      <default code="true">::defaults::fileFilter</default>
+    </entry>
+
+    <entry name="extraParameters" key="extraParameters" type="String">
+      <default></default>
+    </entry>
+
+  </group>
+</kcfg>
