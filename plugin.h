@@ -64,7 +64,9 @@ private:
     void updateActions();
     void projectClosed(KDevelop::IProject* project);
 
-    void runVerapp();
+    void runVerapp(bool checkProject);
+    void runVerapp(KDevelop::IProject* project, const QString& path);
+
     void problemsDetected(const QVector<KDevelop::IProblem::Ptr>& problems);
     void result(KJob* job);
 

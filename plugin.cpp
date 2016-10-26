@@ -62,15 +62,18 @@ Plugin::Plugin(QObject* parent, const QVariantList&)
     rules::init();
 
     m_actionFile = new QAction(i18n("Vera++ (Current File)"), this);
-    m_actionProject = new QAction(i18n("Vera++ (Current Project)"), this);
-    m_actionProjectItem = new QAction("Vera++", this);
-
-    connect(m_actionFile, &QAction::triggered, this, &Plugin::runVerapp);
-    connect(m_actionProject, &QAction::triggered, this, &Plugin::runVerapp);
-    connect(m_actionProjectItem, &QAction::triggered, this, &Plugin::runVerapp);
-
+    connect(m_actionFile, &QAction::triggered, [this](){
+        runVerapp(false);
+    });
     actionCollection()->addAction("verapp_file", m_actionFile);
+
+    m_actionProject = new QAction(i18n("Vera++ (Current Project)"), this);
+    connect(m_actionProject, &QAction::triggered, [this](){
+        runVerapp(true);
+    });
     actionCollection()->addAction("verapp_project", m_actionProject);
+
+    m_actionProjectItem = new QAction("Vera++", this);
 
     connect(core()->documentController(), &KDevelop::IDocumentController::documentClosed,
             this, &Plugin::updateActions);
@@ -155,14 +158,23 @@ void Plugin::projectClosed(KDevelop::IProject* project)
     m_checkedProject = nullptr;
 }
 
-void Plugin::runVerapp()
+void Plugin::runVerapp(bool checkProject)
 {
-    QAction* action = dynamic_cast<QAction*>(sender());
+    KDevelop::IDocument* doc = core()->documentController()->activeDocument();
+    Q_ASSERT(doc);
 
+    if (checkProject)
+        runVerapp(m_currentProject, m_currentProject->path().toUrl().toLocalFile());
+    else
+        runVerapp(m_currentProject, doc->url().toLocalFile());
+}
+
+void Plugin::runVerapp(KDevelop::IProject* project, const QString& path)
+{
     m_checkedProject = m_currentProject;
 
     Parameters params(m_checkedProject);
-    params.checkPath = action->data().toUrl().toLocalFile();
+    params.checkPath = path;
 
     m_problems.clear();
     m_model->clearProblems();
@@ -250,8 +262,10 @@ KDevelop::ContextMenuExtension Plugin::contextMenuExtension(KDevelop::Context* c
                 return extension;
         }
 
-        m_currentProject = item->project();
-        m_actionProjectItem->setData(item->path().toUrl());
+        m_actionProjectItem->disconnect();
+        connect(m_actionProjectItem, &QAction::triggered, [this, item](){
+            runVerapp(item->project(), item->path().toLocalFile());
+        });
 
         extension.addAction(KDevelop::ContextMenuExtension::AnalyzeGroup, m_actionProjectItem);
     }
