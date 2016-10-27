@@ -171,7 +171,7 @@ void Plugin::runVerapp(bool checkProject)
 
 void Plugin::runVerapp(KDevelop::IProject* project, const QString& path)
 {
-    m_checkedProject = m_currentProject;
+    m_checkedProject = project;
 
     Parameters params(m_checkedProject);
     params.checkPath = path;
