@@ -47,7 +47,7 @@ K_PLUGIN_FACTORY_WITH_JSON(VerappFactory, "kdevverapp.json", registerPlugin<vera
 namespace verapp
 {
 
-static const QString modelName("Vera++");
+static const QString modelId("Vera++");
 
 Plugin::Plugin(QObject* parent, const QVariantList&)
     : IPlugin("kdevverapp", parent)
@@ -86,7 +86,7 @@ Plugin::Plugin(QObject* parent, const QVariantList&)
             this, &Plugin::projectClosed);
 
     KDevelop::ProblemModelSet* pms = core()->languageController()->problemModelSet();
-    pms->addModel(modelName, m_model.data());
+    pms->addModel(modelId, i18n("Vera++"), m_model.data());
 
     updateActions();
 }
@@ -96,7 +96,7 @@ Plugin::~Plugin()
     killVerapp();
 
     KDevelop::ProblemModelSet* pms = core()->languageController()->problemModelSet();
-    pms->removeModel(modelName);
+    pms->removeModel(modelId);
 }
 
 bool Plugin::isRunning()
@@ -112,7 +112,7 @@ void Plugin::killVerapp()
 
 void Plugin::raiseProblemsView()
 {
-    core()->languageController()->problemModelSet()->showModel(modelName);
+    core()->languageController()->problemModelSet()->showModel(modelId);
 }
 
 void Plugin::raiseOutputView()
