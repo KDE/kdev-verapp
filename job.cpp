@@ -101,6 +101,7 @@ void Job::postProcessStdout(const QStringList& lines)
             range.setBothLines(match.captured(2).toInt() - 1);
             range.setBothColumns(0);
             problem->setFinalLocation(range);
+            problem->setFinalLocationMode(KDevelop::IProblem::TrimmedLine);
 
             problems.append(problem);
             continue;
