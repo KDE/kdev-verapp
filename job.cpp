@@ -36,6 +36,15 @@
 namespace verapp
 {
 
+class Problem : public KDevelop::DetectedProblem
+{
+public:
+    Problem() {}
+    ~Problem() override {}
+
+    QString sourceString() const override { return QStringLiteral("Vera++"); };
+};
+
 Job::Job(const Parameters &params)
     : OutputExecuteJob(nullptr)
     , m_timer(new QElapsedTimer)
@@ -80,7 +89,7 @@ void Job::postProcessStdout(const QStringList& lines)
     for (const QString & line : lines) {
         match = errorRegex.match(line);
         if (match.hasMatch()) {
-            KDevelop::IProblem::Ptr problem(new KDevelop::DetectedProblem);
+            KDevelop::IProblem::Ptr problem(new Problem);
 
             problem->setSource(KDevelop::IProblem::Plugin);
             problem->setSeverity(KDevelop::IProblem::Warning);
