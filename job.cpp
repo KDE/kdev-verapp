@@ -62,7 +62,7 @@ Job::Job(const Parameters &params)
     setProperties(OutputExecuteJob::JobProperty::DisplayStderr);
     setProperties(OutputExecuteJob::JobProperty::PostProcessOutput);
 
-#if defined(_WIN32) or defined(_WIN64)
+#if defined(_WIN32) || defined(_WIN64)
     *this << "cmd";
 #else
     *this << "sh";
