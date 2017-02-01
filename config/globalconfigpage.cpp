@@ -51,7 +51,7 @@ QString GlobalConfigPage::name() const
 
 QString GlobalConfigPage::fullName() const
 {
-    return i18n("Configure Vera++ settings");
+    return i18n("Configure Vera++ Settings");
 }
 
 QIcon GlobalConfigPage::icon() const
