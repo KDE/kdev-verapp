@@ -120,21 +120,24 @@ void Job::postProcessStdout(const QStringList& lines)
         }
     }
 
-    if (problems.size())
+    if (problems.size()) {
         emit problemsDetected(problems);
+    }
 
     m_standardOutput << lines;
 
-    if (status() == KDevelop::OutputExecuteJob::JobStatus::JobRunning)
+    if (status() == KDevelop::OutputExecuteJob::JobStatus::JobRunning) {
         OutputExecuteJob::postProcessStdout(lines);
+    }
 }
 
 void Job::postProcessStderr(const QStringList& lines)
 {
     m_stderrOutput << lines;
 
-    if (status() == KDevelop::OutputExecuteJob::JobStatus::JobRunning)
+    if (status() == KDevelop::OutputExecuteJob::JobStatus::JobRunning) {
         OutputExecuteJob::postProcessStderr(lines);
+    }
 }
 
 void Job::start()
@@ -158,8 +161,9 @@ void Job::childProcessError(QProcess::ProcessError e)
         break;
 
     case QProcess::Crashed:
-        if (status() != KDevelop::OutputExecuteJob::JobStatus::JobCanceled)
+        if (status() != KDevelop::OutputExecuteJob::JobStatus::JobCanceled) {
             message = i18n("Vera++ crashed.");
+        }
         break;
 
     case QProcess::Timedout:
@@ -180,8 +184,9 @@ void Job::childProcessError(QProcess::ProcessError e)
         break;
     }
 
-    if (!message.isEmpty())
+    if (!message.isEmpty()) {
         KMessageBox::error(qApp->activeWindow(), message, i18n("Vera++ Error"));
+    }
 
     KDevelop::OutputExecuteJob::childProcessError(e);
 }

@@ -91,8 +91,9 @@ QStringList Parameters::commandLine() const
         }
     }
 
-    if (!extraParameters.isEmpty())
+    if (!extraParameters.isEmpty()) {
         arguments << KShell::splitArgs(applyPlaceholders(extraParameters));
+    }
 
     return arguments;
 }
@@ -102,9 +103,9 @@ QString Parameters::buildRunScript() const
     QSet<KDevelop::IndexedString> projectFiles;
     QString scriptPath;
 
-    if (!checkPath.isEmpty() && QFileInfo(checkPath).isFile())
+    if (!checkPath.isEmpty() && QFileInfo(checkPath).isFile()) {
         projectFiles.insert(KDevelop::IndexedString(checkPath));
-    else if (m_project) {
+    } else if (m_project) {
         projectFiles = m_project->fileSet();
         QStringList filters = fileFilter.split(',', QString::SkipEmptyParts);
 
@@ -117,16 +118,18 @@ QString Parameters::buildRunScript() const
                 continue;
             }
 
-            if (!QDir::match(filters, projectFile))
+            if (!QDir::match(filters, projectFile)) {
                 i.remove();
+            }
         }
     }
 
     QString tempDir = QStandardPaths::standardLocations(QStandardPaths::TempLocation).first();
     scriptPath = tempDir + "/kdevverapp";
 
-    if (m_project)
+    if (m_project) {
         scriptPath += "_" + m_project->name();
+    }
 
 #ifdef Q_OS_WIN
     scriptPath += ".bat";
@@ -194,8 +197,9 @@ namespace defaults
 bool isRuleEnabled(rules::Type type)
 {
     // default Vera++ profile
-    if (type == rules::F002 || type == rules::T014)
+    if (type == rules::F002 || type == rules::T014) {
         return false;
+    }
 
     return true;
 }

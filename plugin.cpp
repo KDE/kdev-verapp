@@ -106,8 +106,9 @@ bool Plugin::isRunning()
 
 void Plugin::killVerapp()
 {
-    if (m_job)
+    if (m_job) {
         m_job->kill(KJob::EmitResult);
+    }
 }
 
 void Plugin::raiseProblemsView()
@@ -130,18 +131,21 @@ void Plugin::updateActions()
     m_actionFile->setEnabled(false);
     m_actionProject->setEnabled(false);
 
-    if (isRunning())
+    if (isRunning()) {
         return;
+    }
 
     KDevelop::IDocument* activeDocument = core()->documentController()->activeDocument();
-    if (!activeDocument)
+    if (!activeDocument) {
         return;
+    }
 
     QUrl url = activeDocument->url();
 
     m_currentProject = core()->projectController()->findProjectForUrl(url);
-    if (!m_currentProject)
+    if (!m_currentProject) {
         return;
+    }
 
     m_actionFile->setEnabled(true);
     m_actionProject->setEnabled(true);
@@ -149,8 +153,9 @@ void Plugin::updateActions()
 
 void Plugin::projectClosed(KDevelop::IProject* project)
 {
-    if (project != m_checkedProject)
+    if (project != m_checkedProject) {
         return;
+    }
 
     killVerapp();
     m_problems.clear();
@@ -163,10 +168,11 @@ void Plugin::runVerapp(bool checkProject)
     KDevelop::IDocument* doc = core()->documentController()->activeDocument();
     Q_ASSERT(doc);
 
-    if (checkProject)
+    if (checkProject) {
         runVerapp(m_currentProject, m_currentProject->path().toUrl().toLocalFile());
-    else
+    } else {
         runVerapp(m_currentProject, doc->url().toLocalFile());
+    }
 }
 
 void Plugin::runVerapp(KDevelop::IProject* project, const QString& path)
@@ -187,10 +193,11 @@ void Plugin::runVerapp(KDevelop::IProject* project, const QString& path)
     core()->uiController()->registerStatus(new KDevelop::JobStatus(m_job, "vera++"));
     core()->runController()->registerJob(m_job);
 
-    if (params.hideOutputView)
+    if (params.hideOutputView) {
         raiseProblemsView();
-    else
+    } else {
         raiseOutputView();
+    }
 
     updateActions();
 }
@@ -199,8 +206,9 @@ void Plugin::problemsDetected(const QVector<KDevelop::IProblem::Ptr>& problems)
 {
     static int maxLength = 0;
 
-    if (m_problems.isEmpty())
+    if (m_problems.isEmpty()) {
         maxLength = 0;
+    }
 
     m_problems.append(problems);
     for (auto p : problems) {
@@ -223,10 +231,12 @@ void Plugin::result(KJob*)
         m_model->setProblems(m_problems);
 
         if (m_job->status() == KDevelop::OutputExecuteJob::JobStatus::JobSucceeded ||
-            m_job->status() == KDevelop::OutputExecuteJob::JobStatus::JobCanceled)
+            m_job->status() == KDevelop::OutputExecuteJob::JobStatus::JobCanceled) {
+
             raiseProblemsView();
-        else
+        } else {
             raiseOutputView();
+        }
     }
 
     m_job = nullptr; // job is automatically deleted later
@@ -247,8 +257,9 @@ KDevelop::ContextMenuExtension Plugin::contextMenuExtension(KDevelop::Context* c
 
     if (context->hasType(KDevelop::Context::ProjectItemContext) && !isRunning()) {
         auto pContext = dynamic_cast<KDevelop::ProjectItemContext*>(context);
-        if (pContext->items().size() != 1)
+        if (pContext->items().size() != 1) {
             return extension;
+        }
 
         auto item = pContext->items().first();
 
@@ -275,18 +286,20 @@ KDevelop::ContextMenuExtension Plugin::contextMenuExtension(KDevelop::Context* c
 
 KDevelop::ConfigPage* Plugin::perProjectConfigPage(int number, const KDevelop::ProjectConfigOptions& options, QWidget* parent)
 {
-    if (number != 0)
+    if (number) {
         return nullptr;
-    else
-        return new ProjectConfigPage(this, options.project, parent);
+    }
+
+    return new ProjectConfigPage(this, options.project, parent);
 }
 
 KDevelop::ConfigPage* Plugin::configPage(int number, QWidget* parent)
 {
-    if (number != 0)
+    if (number) {
         return nullptr;
-    else
-        return new GlobalConfigPage(this, parent);
+    }
+
+    return new GlobalConfigPage(this, parent);
 }
 
 }

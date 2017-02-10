@@ -106,8 +106,9 @@ void ProjectConfigPage::updateCommandLine()
     QMutableStringListIterator i(lines);
 
     while (i.hasNext()) {
-        if (!i.next().contains(ui->commandLineFilter->text()))
+        if (!i.next().contains(ui->commandLineFilter->text())) {
             i.remove();
+        }
     }
 
     ui->commandLine->setText(lines.join('\n'));
