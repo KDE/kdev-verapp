@@ -50,7 +50,7 @@ Job::Job(const Parameters &params)
     , m_timer(new QElapsedTimer)
 {
     QString prettyName = KDevelop::ICore::self()->projectController()->prettyFileName(
-        params.checkPath,
+        QUrl::fromLocalFile(params.checkPath),
         KDevelop::IProjectController::FormatPlain);
     setJobName(QString("Vera++ (%1)").arg(prettyName));
 
