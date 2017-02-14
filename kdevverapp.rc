@@ -1,8 +1,9 @@
 <!DOCTYPE kpartgui>
-<gui name="kdevverapp" version="8">
+<gui name="kdevverapp" version="9">
 <MenuBar>
   <Menu name="analyze">
   <text context="@title:menu">Analyze</text>
+    <Separator/>
     <Action name="verapp_file"/>
     <Action name="verapp_project"/>
     <Separator/>
