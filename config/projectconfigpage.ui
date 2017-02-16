@@ -49,17 +49,17 @@
         </widget>
         <widget class="QWidget" name="tabT1">
          <attribute name="title">
-          <string>T1</string>
+          <string>T 1-7</string>
          </attribute>
         </widget>
         <widget class="QWidget" name="tabT2">
          <attribute name="title">
-          <string>T2</string>
+          <string>T 8-14</string>
          </attribute>
         </widget>
         <widget class="QWidget" name="tabT3">
          <attribute name="title">
-          <string>T3</string>
+          <string>T 15-19</string>
          </attribute>
         </widget>
        </widget>
