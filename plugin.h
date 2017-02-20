@@ -40,8 +40,6 @@ class ProblemModel;
 
 class Plugin : public KDevelop::IPlugin
 {
-    friend class ProblemModel;
-
     Q_OBJECT
 
 public:
@@ -57,6 +55,8 @@ public:
 
     KDevelop::ContextMenuExtension contextMenuExtension(KDevelop::Context* context) override;
 
+    void runVerapp(KDevelop::IProject* project, const QString& path);
+
 private:
     bool isRunning();
     void killVerapp();
@@ -68,9 +68,7 @@ private:
     void projectClosed(KDevelop::IProject* project);
 
     void runVerapp(bool checkProject);
-    void runVerapp(KDevelop::IProject* project, const QString& path);
 
-    void problemsDetected(const QVector<KDevelop::IProblem::Ptr>& problems);
     void result(KJob* job);
 
     Job* m_job;
@@ -82,7 +80,6 @@ private:
     QAction* m_actionProjectItem;
 
     QScopedPointer<ProblemModel> m_model;
-    QVector<KDevelop::IProblem::Ptr> m_problems;
 };
 
 }

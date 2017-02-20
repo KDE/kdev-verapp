@@ -57,6 +57,11 @@ public:
 
     KDevelop::IProject* project() const;
 
+    void addProblems(const QVector<KDevelop::IProblem::Ptr>& problems);
+
+    void setProblems();
+    using KDevelop::ProblemModel::setProblems;
+
     void reset();
     void reset(KDevelop::IProject* project, const QString& path);
 
@@ -67,6 +72,8 @@ private:
 
     KDevelop::IProject* m_project;
     QString m_path;
+
+    QVector<KDevelop::IProblem::Ptr> m_problems;
 };
 
 Plugin::Plugin(QObject* parent, const QVariantList&)
@@ -84,6 +91,8 @@ Plugin::Plugin(QObject* parent, const QVariantList&)
         KDevelop::ProblemModel::SeverityFilter |
         KDevelop::ProblemModel::Grouping |
         KDevelop::ProblemModel::CanByPassScopeFilter);
+
+    core()->languageController()->problemModelSet()->addModel(modelId, i18n("Vera++"), m_model.data());
 
     rules::init();
 
@@ -111,18 +120,13 @@ Plugin::Plugin(QObject* parent, const QVariantList&)
     connect(core()->projectController(), &KDevelop::IProjectController::projectClosed,
             this, &Plugin::projectClosed);
 
-    KDevelop::ProblemModelSet* pms = core()->languageController()->problemModelSet();
-    pms->addModel(modelId, i18n("Vera++"), m_model.data());
-
     updateActions();
 }
 
 Plugin::~Plugin()
 {
     killVerapp();
-
-    KDevelop::ProblemModelSet* pms = core()->languageController()->problemModelSet();
-    pms->removeModel(modelId);
+    core()->languageController()->problemModelSet()->removeModel(modelId);
 }
 
 bool Plugin::isRunning()
@@ -161,14 +165,12 @@ void Plugin::updateActions()
         return;
     }
 
-    KDevelop::IDocument* activeDocument = core()->documentController()->activeDocument();
+    auto activeDocument = core()->documentController()->activeDocument();
     if (!activeDocument) {
         return;
     }
 
-    QUrl url = activeDocument->url();
-
-    m_project = core()->projectController()->findProjectForUrl(url);
+    m_project = core()->projectController()->findProjectForUrl(activeDocument->url());
     if (!m_project) {
         return;
     }
@@ -189,7 +191,7 @@ void Plugin::projectClosed(KDevelop::IProject* project)
 
 void Plugin::runVerapp(bool checkProject)
 {
-    KDevelop::IDocument* doc = core()->documentController()->activeDocument();
+    auto doc = core()->documentController()->activeDocument();
     Q_ASSERT(doc);
 
     if (checkProject) {
@@ -208,8 +210,8 @@ void Plugin::runVerapp(KDevelop::IProject* project, const QString& path)
 
     m_job = new Job(params);
 
-    connect(m_job, &Job::problemsDetected, this, &Plugin::problemsDetected);
-    connect(m_job, &Job::finished,         this, &Plugin::result);
+    connect(m_job, &Job::problemsDetected, m_model.data(), &ProblemModel::addProblems);
+    connect(m_job, &Job::finished, this, &Plugin::result);
 
     core()->uiController()->registerStatus(new KDevelop::JobStatus(m_job, "vera++"));
     core()->runController()->registerJob(m_job);
@@ -223,32 +225,12 @@ void Plugin::runVerapp(KDevelop::IProject* project, const QString& path)
     updateActions();
 }
 
-void Plugin::problemsDetected(const QVector<KDevelop::IProblem::Ptr>& problems)
-{
-    static int maxLength = 0;
-
-    if (m_problems.isEmpty()) {
-        maxLength = 0;
-    }
-
-    m_problems.append(problems);
-    for (auto p : problems) {
-        m_model->addProblem(p);
-
-        // this performs adjusing of columns width in the ProblemsView
-        if (maxLength < p->description().length()) {
-            maxLength = p->description().length();
-            m_model->setProblems(m_problems);
-        }
-    }
-}
-
 void Plugin::result(KJob*)
 {
     if (!core()->projectController()->projects().contains(m_model->project())) {
         m_model->reset();
     } else {
-        m_model->setProblems(m_problems);
+        m_model->setProblems();
 
         if (m_job->status() == KDevelop::OutputExecuteJob::JobStatus::JobSucceeded ||
             m_job->status() == KDevelop::OutputExecuteJob::JobStatus::JobCanceled) {
@@ -327,20 +309,47 @@ ProblemModel::ProblemModel(Plugin* plugin)
     , m_plugin(plugin)
     , m_project(nullptr)
 {
+    reset();
 }
 
 ProblemModel::~ProblemModel()
 {
 }
 
-void ProblemModel::reset()
-{
-    reset(nullptr, QString());
-}
-
 KDevelop::IProject* ProblemModel::project() const
 {
     return m_project;
+}
+
+void ProblemModel::addProblems(const QVector<KDevelop::IProblem::Ptr>& problems)
+{
+    static int maxLength = 0;
+
+    if (m_problems.isEmpty()) {
+        maxLength = 0;
+    }
+
+    m_problems.append(problems);
+    for (auto p : problems) {
+        addProblem(p);
+
+        // this performs adjusting of columns width in the ProblemsView
+        if (maxLength < p->description().length()) {
+            maxLength = p->description().length();
+            setProblems(m_problems);
+            break;
+        }
+    }
+}
+
+void ProblemModel::setProblems()
+{
+    setProblems(m_problems);
+}
+
+void ProblemModel::reset()
+{
+    reset(nullptr, QString());
 }
 
 void ProblemModel::reset(KDevelop::IProject* project, const QString& path)
@@ -349,16 +358,24 @@ void ProblemModel::reset(KDevelop::IProject* project, const QString& path)
     m_path = path;
 
     clearProblems();
-    m_plugin->m_problems.clear();
+    m_problems.clear();
+
+    QString tooltip = i18nc("@info:tooltip", "Re-run last Vera++ analyze");
+    if (m_project) {
+        QString prettyName = KDevelop::ICore::self()->projectController()->prettyFileName(
+            QUrl::fromLocalFile(m_path),
+            KDevelop::IProjectController::FormatPlain);
+        tooltip += QString(" (%1)").arg(prettyName);
+    }
+
+    setFullUpdateTooltip(tooltip);
 }
 
 void ProblemModel::forceFullUpdate()
 {
-    if (!m_project) {
-        return;
+    if (m_project) {
+        m_plugin->runVerapp(m_project, m_path);
     }
-
-    m_plugin->runVerapp(m_project, m_path);
 }
 
 }
