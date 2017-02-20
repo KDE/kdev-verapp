@@ -31,14 +31,17 @@ class QMenu;
 namespace KDevelop
 {
     class IProject;
-    class ProblemModel;
 }
 
 namespace verapp
 {
 
+class ProblemModel;
+
 class Plugin : public KDevelop::IPlugin
 {
+    friend class ProblemModel;
+
     Q_OBJECT
 
 public:
@@ -72,14 +75,13 @@ private:
 
     Job* m_job;
 
-    KDevelop::IProject* m_currentProject;
-    KDevelop::IProject* m_checkedProject;
+    KDevelop::IProject* m_project;
 
     QAction* m_actionFile;
     QAction* m_actionProject;
     QAction* m_actionProjectItem;
 
-    QScopedPointer<KDevelop::ProblemModel> m_model;
+    QScopedPointer<ProblemModel> m_model;
     QVector<KDevelop::IProblem::Ptr> m_problems;
 };
 

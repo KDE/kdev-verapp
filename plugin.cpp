@@ -49,15 +49,41 @@ namespace verapp
 
 static const QString modelId("Vera++");
 
+class ProblemModel : public KDevelop::ProblemModel
+{
+public:
+    explicit ProblemModel(Plugin* plugin);
+    ~ProblemModel() override;
+
+    KDevelop::IProject* project() const;
+
+    void reset();
+    void reset(KDevelop::IProject* project, const QString& path);
+
+    void forceFullUpdate() override;
+
+private:
+    Plugin* m_plugin;
+
+    KDevelop::IProject* m_project;
+    QString m_path;
+};
+
 Plugin::Plugin(QObject* parent, const QVariantList&)
     : IPlugin("kdevverapp", parent)
     , m_job(nullptr)
-    , m_currentProject(nullptr)
-    , m_checkedProject(nullptr)
-    , m_model(new KDevelop::ProblemModel(this))
+    , m_project(nullptr)
+    , m_model(new ProblemModel(this))
 {
     qCDebug(KDEV_VERAPP) << "setting kdevverapp.rc file";
     setXMLFile("kdevverapp.rc");
+
+    m_model->setFeatures(
+        KDevelop::ProblemModel::CanDoFullUpdate |
+        KDevelop::ProblemModel::ScopeFilter |
+        KDevelop::ProblemModel::SeverityFilter |
+        KDevelop::ProblemModel::Grouping |
+        KDevelop::ProblemModel::CanByPassScopeFilter);
 
     rules::init();
 
@@ -126,7 +152,7 @@ void Plugin::raiseOutputView()
 
 void Plugin::updateActions()
 {
-    m_currentProject = nullptr;
+    m_project = nullptr;
 
     m_actionFile->setEnabled(false);
     m_actionProject->setEnabled(false);
@@ -142,8 +168,8 @@ void Plugin::updateActions()
 
     QUrl url = activeDocument->url();
 
-    m_currentProject = core()->projectController()->findProjectForUrl(url);
-    if (!m_currentProject) {
+    m_project = core()->projectController()->findProjectForUrl(url);
+    if (!m_project) {
         return;
     }
 
@@ -153,14 +179,12 @@ void Plugin::updateActions()
 
 void Plugin::projectClosed(KDevelop::IProject* project)
 {
-    if (project != m_checkedProject) {
+    if (project != m_model->project()) {
         return;
     }
 
     killVerapp();
-    m_problems.clear();
-    m_model->clearProblems();
-    m_checkedProject = nullptr;
+    m_model->reset();
 }
 
 void Plugin::runVerapp(bool checkProject)
@@ -169,21 +193,18 @@ void Plugin::runVerapp(bool checkProject)
     Q_ASSERT(doc);
 
     if (checkProject) {
-        runVerapp(m_currentProject, m_currentProject->path().toUrl().toLocalFile());
+        runVerapp(m_project, m_project->path().toUrl().toLocalFile());
     } else {
-        runVerapp(m_currentProject, doc->url().toLocalFile());
+        runVerapp(m_project, doc->url().toLocalFile());
     }
 }
 
 void Plugin::runVerapp(KDevelop::IProject* project, const QString& path)
 {
-    m_checkedProject = project;
-
-    Parameters params(m_checkedProject);
+    Parameters params(project);
     params.checkPath = path;
 
-    m_problems.clear();
-    m_model->clearProblems();
+    m_model->reset(project, path);
 
     m_job = new Job(params);
 
@@ -224,9 +245,8 @@ void Plugin::problemsDetected(const QVector<KDevelop::IProblem::Ptr>& problems)
 
 void Plugin::result(KJob*)
 {
-    if (!core()->projectController()->projects().contains(m_checkedProject)) {
-        m_problems.clear();
-        m_model->clearProblems();
+    if (!core()->projectController()->projects().contains(m_model->project())) {
+        m_model->reset();
     } else {
         m_model->setProblems(m_problems);
 
@@ -248,11 +268,9 @@ KDevelop::ContextMenuExtension Plugin::contextMenuExtension(KDevelop::Context* c
 {
     KDevelop::ContextMenuExtension extension;
 
-    if (context->hasType(KDevelop::Context::EditorContext) &&
-        m_currentProject && !isRunning()) {
-
-            extension.addAction(KDevelop::ContextMenuExtension::AnalyzeGroup, m_actionFile);
-            extension.addAction(KDevelop::ContextMenuExtension::AnalyzeGroup, m_actionProject);
+    if (context->hasType(KDevelop::Context::EditorContext) && m_project && !isRunning()) {
+        extension.addAction(KDevelop::ContextMenuExtension::AnalyzeGroup, m_actionFile);
+        extension.addAction(KDevelop::ContextMenuExtension::AnalyzeGroup, m_actionProject);
     }
 
     if (context->hasType(KDevelop::Context::ProjectItemContext) && !isRunning()) {
@@ -300,6 +318,47 @@ KDevelop::ConfigPage* Plugin::configPage(int number, QWidget* parent)
     }
 
     return new GlobalConfigPage(this, parent);
+}
+
+// ============================================================================
+
+ProblemModel::ProblemModel(Plugin* plugin)
+    : KDevelop::ProblemModel(plugin)
+    , m_plugin(plugin)
+    , m_project(nullptr)
+{
+}
+
+ProblemModel::~ProblemModel()
+{
+}
+
+void ProblemModel::reset()
+{
+    reset(nullptr, QString());
+}
+
+KDevelop::IProject* ProblemModel::project() const
+{
+    return m_project;
+}
+
+void ProblemModel::reset(KDevelop::IProject* project, const QString& path)
+{
+    m_project = project;
+    m_path = path;
+
+    clearProblems();
+    m_plugin->m_problems.clear();
+}
+
+void ProblemModel::forceFullUpdate()
+{
+    if (!m_project) {
+        return;
+    }
+
+    m_plugin->runVerapp(m_project, m_path);
 }
 
 }
