@@ -24,11 +24,11 @@
 #include "config/projectconfigpage.h"
 #include "debug.h"
 #include "problemmodel.h"
+#include "rules.h"
 
 #include <interfaces/contextmenuextension.h>
 #include <interfaces/icore.h>
 #include <interfaces/idocumentcontroller.h>
-#include <interfaces/ilanguagecontroller.h>
 #include <interfaces/iprojectcontroller.h>
 #include <interfaces/iruncontroller.h>
 #include <interfaces/iuicontroller.h>
@@ -37,10 +37,7 @@
 #include <language/interfaces/editorcontext.h>
 #include <project/projectconfigpage.h>
 #include <project/projectmodel.h>
-#include <shell/problemmodelset.h>
 #include <util/jobstatus.h>
-
-#include "rules.h"
 
 K_PLUGIN_FACTORY_WITH_JSON(VerappFactory, "kdevverapp.json", registerPlugin<verapp::Plugin>();)
 
@@ -51,19 +48,10 @@ Plugin::Plugin(QObject* parent, const QVariantList&)
     : IPlugin("kdevverapp", parent)
     , m_job(nullptr)
     , m_project(nullptr)
-    , m_model(new ProblemModel(this, QStringLiteral("Vera++")))
+    , m_model(new ProblemModel(this))
 {
     qCDebug(KDEV_VERAPP) << "setting kdevverapp.rc file";
     setXMLFile("kdevverapp.rc");
-
-    m_model->setFeatures(
-        KDevelop::ProblemModel::CanDoFullUpdate |
-        KDevelop::ProblemModel::ScopeFilter |
-        KDevelop::ProblemModel::SeverityFilter |
-        KDevelop::ProblemModel::Grouping |
-        KDevelop::ProblemModel::CanByPassScopeFilter);
-
-    core()->languageController()->problemModelSet()->addModel(m_model->id(), i18n("Vera++"), m_model.data());
 
     rules::init();
 
@@ -97,7 +85,6 @@ Plugin::Plugin(QObject* parent, const QVariantList&)
 Plugin::~Plugin()
 {
     killVerapp();
-    core()->languageController()->problemModelSet()->removeModel(m_model->id());
 }
 
 bool Plugin::isRunning()
@@ -114,7 +101,7 @@ void Plugin::killVerapp()
 
 void Plugin::raiseProblemsView()
 {
-    core()->languageController()->problemModelSet()->showModel(m_model->id());
+    m_model->show();
 }
 
 void Plugin::raiseOutputView()

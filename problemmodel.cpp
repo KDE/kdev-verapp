@@ -23,22 +23,40 @@
 #include "plugin.h"
 #include "utils.h"
 
+#include <interfaces/icore.h>
+#include <interfaces/ilanguagecontroller.h>
+#include <shell/problemmodelset.h>
+
 #include <klocalizedstring.h>
 
 namespace verapp
 {
 
-ProblemModel::ProblemModel(Plugin* plugin, const QString& id)
+inline KDevelop::ProblemModelSet* problemModelSet()
+{
+    return KDevelop::ICore::self()->languageController()->problemModelSet();
+}
+
+ProblemModel::ProblemModel(Plugin* plugin)
     : KDevelop::ProblemModel(plugin)
     , m_plugin(plugin)
-    , m_id(id)
+    , m_id(QStringLiteral("Vera++"))
     , m_project(nullptr)
 {
+    setFeatures(CanDoFullUpdate |
+                ScopeFilter |
+                SeverityFilter |
+                Grouping |
+                CanByPassScopeFilter);
+
     reset();
+
+    problemModelSet()->addModel(m_id, i18n("Vera++"), this);
 }
 
 ProblemModel::~ProblemModel()
 {
+    problemModelSet()->removeModel(m_id);
 }
 
 const QString& ProblemModel::id() const
@@ -95,6 +113,11 @@ void ProblemModel::reset(KDevelop::IProject* project, const QString& path)
         tooltip += QString(" (%1)").arg(prettyPathName(m_path));
     }
     setFullUpdateTooltip(tooltip);
+}
+
+void ProblemModel::show()
+{
+    problemModelSet()->showModel(m_id);
 }
 
 void ProblemModel::forceFullUpdate()

@@ -35,7 +35,7 @@ class Plugin;
 class ProblemModel : public KDevelop::ProblemModel
 {
 public:
-    ProblemModel(Plugin* plugin, const QString& id);
+    explicit ProblemModel(Plugin* plugin);
     ~ProblemModel() override;
 
     const QString& id() const;
@@ -48,6 +48,8 @@ public:
 
     void reset();
     void reset(KDevelop::IProject* project, const QString& path);
+
+    void show();
 
     void forceFullUpdate() override;
 
