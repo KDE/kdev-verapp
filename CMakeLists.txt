@@ -30,6 +30,7 @@ include_directories(
 
 set(kdevverapp_SRCS
     plugin.cpp
+    problemmodel.cpp
 
     config/globalconfigpage.cpp
     config/projectconfigpage.cpp
@@ -49,6 +50,7 @@ add_library(kdevverapp_core STATIC
     debug.cpp
     job.cpp
     parameters.cpp
+    utils.cpp
 
     rules/rules.cpp
     rules/rules_db.cpp

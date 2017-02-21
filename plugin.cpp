@@ -23,6 +23,7 @@
 #include "config/globalconfigpage.h"
 #include "config/projectconfigpage.h"
 #include "debug.h"
+#include "problemmodel.h"
 
 #include <interfaces/contextmenuextension.h>
 #include <interfaces/icore.h>
@@ -36,7 +37,6 @@
 #include <language/interfaces/editorcontext.h>
 #include <project/projectconfigpage.h>
 #include <project/projectmodel.h>
-#include <shell/problemmodel.h>
 #include <shell/problemmodelset.h>
 #include <util/jobstatus.h>
 
@@ -47,40 +47,11 @@ K_PLUGIN_FACTORY_WITH_JSON(VerappFactory, "kdevverapp.json", registerPlugin<vera
 namespace verapp
 {
 
-static const QString modelId("Vera++");
-
-class ProblemModel : public KDevelop::ProblemModel
-{
-public:
-    explicit ProblemModel(Plugin* plugin);
-    ~ProblemModel() override;
-
-    KDevelop::IProject* project() const;
-
-    void addProblems(const QVector<KDevelop::IProblem::Ptr>& problems);
-
-    void setProblems();
-    using KDevelop::ProblemModel::setProblems;
-
-    void reset();
-    void reset(KDevelop::IProject* project, const QString& path);
-
-    void forceFullUpdate() override;
-
-private:
-    Plugin* m_plugin;
-
-    KDevelop::IProject* m_project;
-    QString m_path;
-
-    QVector<KDevelop::IProblem::Ptr> m_problems;
-};
-
 Plugin::Plugin(QObject* parent, const QVariantList&)
     : IPlugin("kdevverapp", parent)
     , m_job(nullptr)
     , m_project(nullptr)
-    , m_model(new ProblemModel(this))
+    , m_model(new ProblemModel(this, QStringLiteral("Vera++")))
 {
     qCDebug(KDEV_VERAPP) << "setting kdevverapp.rc file";
     setXMLFile("kdevverapp.rc");
@@ -92,7 +63,7 @@ Plugin::Plugin(QObject* parent, const QVariantList&)
         KDevelop::ProblemModel::Grouping |
         KDevelop::ProblemModel::CanByPassScopeFilter);
 
-    core()->languageController()->problemModelSet()->addModel(modelId, i18n("Vera++"), m_model.data());
+    core()->languageController()->problemModelSet()->addModel(m_model->id(), i18n("Vera++"), m_model.data());
 
     rules::init();
 
@@ -126,7 +97,7 @@ Plugin::Plugin(QObject* parent, const QVariantList&)
 Plugin::~Plugin()
 {
     killVerapp();
-    core()->languageController()->problemModelSet()->removeModel(modelId);
+    core()->languageController()->problemModelSet()->removeModel(m_model->id());
 }
 
 bool Plugin::isRunning()
@@ -143,7 +114,7 @@ void Plugin::killVerapp()
 
 void Plugin::raiseProblemsView()
 {
-    core()->languageController()->problemModelSet()->showModel(modelId);
+    core()->languageController()->problemModelSet()->showModel(m_model->id());
 }
 
 void Plugin::raiseOutputView()
@@ -300,82 +271,6 @@ KDevelop::ConfigPage* Plugin::configPage(int number, QWidget* parent)
     }
 
     return new GlobalConfigPage(this, parent);
-}
-
-// ============================================================================
-
-ProblemModel::ProblemModel(Plugin* plugin)
-    : KDevelop::ProblemModel(plugin)
-    , m_plugin(plugin)
-    , m_project(nullptr)
-{
-    reset();
-}
-
-ProblemModel::~ProblemModel()
-{
-}
-
-KDevelop::IProject* ProblemModel::project() const
-{
-    return m_project;
-}
-
-void ProblemModel::addProblems(const QVector<KDevelop::IProblem::Ptr>& problems)
-{
-    static int maxLength = 0;
-
-    if (m_problems.isEmpty()) {
-        maxLength = 0;
-    }
-
-    m_problems.append(problems);
-    for (auto p : problems) {
-        addProblem(p);
-
-        // this performs adjusting of columns width in the ProblemsView
-        if (maxLength < p->description().length()) {
-            maxLength = p->description().length();
-            setProblems(m_problems);
-            break;
-        }
-    }
-}
-
-void ProblemModel::setProblems()
-{
-    setProblems(m_problems);
-}
-
-void ProblemModel::reset()
-{
-    reset(nullptr, QString());
-}
-
-void ProblemModel::reset(KDevelop::IProject* project, const QString& path)
-{
-    m_project = project;
-    m_path = path;
-
-    clearProblems();
-    m_problems.clear();
-
-    QString tooltip = i18nc("@info:tooltip", "Re-run last Vera++ analyze");
-    if (m_project) {
-        QString prettyName = KDevelop::ICore::self()->projectController()->prettyFileName(
-            QUrl::fromLocalFile(m_path),
-            KDevelop::IProjectController::FormatPlain);
-        tooltip += QString(" (%1)").arg(prettyName);
-    }
-
-    setFullUpdateTooltip(tooltip);
-}
-
-void ProblemModel::forceFullUpdate()
-{
-    if (m_project) {
-        m_plugin->runVerapp(m_project, m_path);
-    }
 }
 
 }

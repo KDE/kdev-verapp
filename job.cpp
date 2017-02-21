@@ -22,11 +22,10 @@
 
 #include "debug.h"
 #include "rules.h"
+#include "utils.h"
 
-#include <interfaces/icore.h>
-#include <interfaces/iprojectcontroller.h>
-#include <KLocalizedString>
-#include <KMessageBox>
+#include <klocalizedstring.h>
+#include <kmessagebox.h>
 #include <shell/problem.h>
 
 #include <QApplication>
@@ -49,10 +48,7 @@ Job::Job(const Parameters &params)
     : OutputExecuteJob(nullptr)
     , m_timer(new QElapsedTimer)
 {
-    QString prettyName = KDevelop::ICore::self()->projectController()->prettyFileName(
-        QUrl::fromLocalFile(params.checkPath),
-        KDevelop::IProjectController::FormatPlain);
-    setJobName(QString("Vera++ (%1)").arg(prettyName));
+    setJobName(QString("Vera++ (%1)").arg(prettyPathName(params.checkPath)));
 
     setCapabilities(KJob::Killable);
     setStandardToolView(KDevelop::IOutputView::TestView);
