@@ -38,7 +38,6 @@ public:
     explicit ProblemModel(Plugin* plugin);
     ~ProblemModel() override;
 
-    const QString& id() const;
     KDevelop::IProject* project() const;
 
     void addProblems(const QVector<KDevelop::IProblem::Ptr>& problems);
@@ -55,7 +54,6 @@ public:
 
 private:
     Plugin* m_plugin;
-    QString m_id;
 
     KDevelop::IProject* m_project;
     QString m_path;

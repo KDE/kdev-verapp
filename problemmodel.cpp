@@ -37,10 +37,11 @@ inline KDevelop::ProblemModelSet* problemModelSet()
     return KDevelop::ICore::self()->languageController()->problemModelSet();
 }
 
+static const QString problemModelId = QStringLiteral("Vera++");
+
 ProblemModel::ProblemModel(Plugin* plugin)
     : KDevelop::ProblemModel(plugin)
     , m_plugin(plugin)
-    , m_id(QStringLiteral("Vera++"))
     , m_project(nullptr)
 {
     setFeatures(CanDoFullUpdate |
@@ -51,17 +52,12 @@ ProblemModel::ProblemModel(Plugin* plugin)
 
     reset();
 
-    problemModelSet()->addModel(m_id, i18n("Vera++"), this);
+    problemModelSet()->addModel(problemModelId, i18n("Vera++"), this);
 }
 
 ProblemModel::~ProblemModel()
 {
-    problemModelSet()->removeModel(m_id);
-}
-
-const QString& ProblemModel::id() const
-{
-    return m_id;
+    problemModelSet()->removeModel(problemModelId);
 }
 
 KDevelop::IProject* ProblemModel::project() const
@@ -117,7 +113,7 @@ void ProblemModel::reset(KDevelop::IProject* project, const QString& path)
 
 void ProblemModel::show()
 {
-    problemModelSet()->showModel(m_id);
+    problemModelSet()->showModel(problemModelId);
 }
 
 void ProblemModel::forceFullUpdate()
