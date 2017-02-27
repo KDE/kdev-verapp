@@ -104,7 +104,7 @@ void ProblemModel::reset(KDevelop::IProject* project, const QString& path)
     clearProblems();
     m_problems.clear();
 
-    QString tooltip = i18nc("@info:tooltip", "Re-run last Vera++ analyze");
+    QString tooltip = i18nc("@info:tooltip", "Re-Run Last Vera++ Analysis");
     if (m_project) {
         tooltip += QString(" (%1)").arg(prettyPathName(m_path));
     }
