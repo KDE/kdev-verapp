@@ -118,7 +118,7 @@ void ProblemModel::show()
 
 void ProblemModel::forceFullUpdate()
 {
-    if (m_project) {
+    if (m_project && !m_plugin->isRunning()) {
         m_plugin->runVerapp(m_project, m_path);
     }
 }

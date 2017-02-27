@@ -56,9 +56,9 @@ public:
     KDevelop::ContextMenuExtension contextMenuExtension(KDevelop::Context* context) override;
 
     void runVerapp(KDevelop::IProject* project, const QString& path);
+    bool isRunning();
 
 private:
-    bool isRunning();
     void killVerapp();
 
     void raiseProblemsView();
