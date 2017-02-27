@@ -48,7 +48,7 @@ Job::Job(const Parameters &params)
     : OutputExecuteJob(nullptr)
     , m_timer(new QElapsedTimer)
 {
-    setJobName(QString("Vera++ (%1)").arg(prettyPathName(params.checkPath)));
+    setJobName(QString("Vera++ Analysis (%1)").arg(prettyPathName(params.checkPath)));
 
     setCapabilities(KJob::Killable);
     setStandardToolView(KDevelop::IOutputView::TestView);
