@@ -33,11 +33,15 @@
 #include <interfaces/iruncontroller.h>
 #include <interfaces/iuicontroller.h>
 #include <kactioncollection.h>
+#include <kmessagebox.h>
 #include <kpluginfactory.h>
 #include <language/interfaces/editorcontext.h>
 #include <project/projectconfigpage.h>
 #include <project/projectmodel.h>
 #include <util/jobstatus.h>
+
+#include <QApplication>
+#include <QFile>
 
 K_PLUGIN_FACTORY_WITH_JSON(VerappFactory, "kdevverapp.json", registerPlugin<verapp::Plugin>();)
 
@@ -165,6 +169,16 @@ void Plugin::runVerapp(KDevelop::IProject* project, const QString& path)
     params.checkPath = path;
 
     m_model->reset(project, path);
+
+    if (!QFile::exists(params.executablePath)) {
+        QString errorMessage;
+        errorMessage += i18n("Failed to start vera++ from \"%1\".", params.executablePath);
+        errorMessage += QStringLiteral("\n\n");
+        errorMessage += i18n("Check your settings and install the vera++ if necessary.");
+
+        KMessageBox::error(qApp->activeWindow(), errorMessage, i18n("Vera++ Error"));
+        return;
+    }
 
     m_job = new Job(params);
 
