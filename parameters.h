@@ -37,8 +37,9 @@ namespace defaults
 {
 
 QString executablePath();
-static const bool hideOutputView = true;
-static const QString fileFilter = QStringLiteral("*.h,*.hxx,*.hpp,*.hh,*.h++,*.H,*.tlh,*.cpp,*.cc,*.C,*.c++,*.cxx,*.ocl,*.inl,*.idl,*.c,*.m,*.mm,*.M,*.y,*.ypp,*.yxx,*.y++,*.l");
+bool hideOutputView();
+
+QString fileFilter();
 
 bool isRuleEnabled(rules::Type type);
 

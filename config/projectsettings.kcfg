@@ -46,7 +46,7 @@
     </entry>
 
     <entry name="fileFilter" key="fileFilter" type="String">
-      <default code="true">::defaults::fileFilter</default>
+      <default code="true">::defaults::fileFilter()</default>
     </entry>
 
     <entry name="extraParameters" key="extraParameters" type="String">

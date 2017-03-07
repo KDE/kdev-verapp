@@ -49,6 +49,16 @@ QString executablePath()
     return path.isEmpty() ? QStringLiteral("vera++") : path;
 }
 
+bool hideOutputView()
+{
+    return true;
+}
+
+QString fileFilter()
+{
+    return QStringLiteral("*.h,*.hxx,*.hpp,*.hh,*.h++,*.H,*.tlh,*.cpp,*.cc,*.C,*.c++,*.cxx,*.ocl,*.inl,*.idl,*.c,*.m,*.mm,*.M,*.y,*.ypp,*.yxx,*.y++,*.l");
+}
+
 }
 
 Parameters::Parameters(KDevelop::IProject* project)
@@ -64,7 +74,7 @@ Parameters::Parameters(KDevelop::IProject* project)
             m_ruleEnabled[ruleType] = defaults::isRuleEnabled(ruleType);
         }
 
-        fileFilter = defaults::fileFilter;
+        fileFilter = defaults::fileFilter();
         return;
     }
 

@@ -13,7 +13,7 @@
     </entry>
 
     <entry name="hideOutputView" key="hideOutputView" type="Bool">
-        <default code="true">defaults::hideOutputView</default>
+        <default code="true">defaults::hideOutputView()</default>
     </entry>
 
   </group>
