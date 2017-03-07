@@ -36,7 +36,7 @@ namespace verapp
 namespace defaults
 {
 
-static const QString executablePath = QStringLiteral("/usr/bin/vera++");
+QString executablePath();
 static const bool hideOutputView = true;
 static const QString fileFilter = QStringLiteral("*.h,*.hxx,*.hpp,*.hh,*.h++,*.H,*.tlh,*.cpp,*.cc,*.C,*.c++,*.cxx,*.ocl,*.inl,*.idl,*.c,*.m,*.mm,*.M,*.y,*.ypp,*.yxx,*.y++,*.l");
 

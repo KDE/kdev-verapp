@@ -33,11 +33,23 @@
 
 #include <QDir>
 #include <QFileInfo>
+#include <QStandardPaths>
 #include <QTextStream>
 #include <QMessageBox>
 
 namespace verapp
 {
+
+namespace defaults
+{
+
+QString executablePath()
+{
+    QString path = QStandardPaths::findExecutable(QStringLiteral("vera++"));
+    return path.isEmpty() ? QStringLiteral("vera++") : path;
+}
+
+}
 
 Parameters::Parameters(KDevelop::IProject* project)
     : m_project(project)
