@@ -36,9 +36,13 @@ set(kdevverapp_SRCS
     config/projectconfigpage.cpp
 )
 
-ki18n_wrap_ui(kdevverapp_UI_SRCS
+ki18n_wrap_ui(kdevverapp_SRCS
     config/globalconfigpage.ui
     config/projectconfigpage.ui
+)
+
+qt5_add_resources(kdevverapp_SRCS
+	kdevverapp.qrc
 )
 
 kconfig_add_kcfg_files(kdevverapp_CONFIG_SRCS
@@ -66,14 +70,12 @@ target_link_libraries(kdevverapp_core
 
 kdevplatform_add_plugin(kdevverapp
     JSON kdevverapp.json
-    SOURCES ${kdevverapp_SRCS} ${kdevverapp_UI_SRCS}
+    SOURCES ${kdevverapp_SRCS}
 )
 
 target_link_libraries(kdevverapp
     kdevverapp_core
 )
-
-install(FILES kdevverapp.rc DESTINATION ${KXMLGUI_INSTALL_DIR}/kdevverapp)
 
 add_subdirectory(tests)
 
