@@ -42,7 +42,7 @@ ki18n_wrap_ui(kdevverapp_SRCS
 )
 
 qt5_add_resources(kdevverapp_SRCS
-	kdevverapp.qrc
+    kdevverapp.qrc
 )
 
 kconfig_add_kcfg_files(kdevverapp_CONFIG_SRCS
