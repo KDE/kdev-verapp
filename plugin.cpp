@@ -54,10 +54,9 @@ Plugin::Plugin(QObject* parent, const QVariantList&)
     , m_project(nullptr)
     , m_model(new ProblemModel(this))
 {
-    setComponentName(QStringLiteral("kdevverapp"), i18n("Vera++ Analyzer"));
-
     qCDebug(KDEV_VERAPP) << "setting kdevverapp.rc file";
     setXMLFile("kdevverapp.rc");
+    actionCollection()->setComponentDisplayName(i18n("Vera++ Analyzer"));
 
     rules::init();
 
