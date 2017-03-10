@@ -20,4 +20,4 @@
 
 #include "debug.h"
 
-Q_LOGGING_CATEGORY(KDEV_VERAPP, "kdev.analyzers.verapp")
+Q_LOGGING_CATEGORY(KDEV_VERAPP, "kdevelop.analyzers.verapp")
