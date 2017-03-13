@@ -76,9 +76,8 @@ void Job::postProcessStdout(const QStringList& lines)
     for (const QString & line : lines) {
         match = errorRegex.match(line);
         if (match.hasMatch()) {
-            KDevelop::IProblem::Ptr problem(new KDevelop::DetectedProblem);
+            KDevelop::IProblem::Ptr problem(new KDevelop::DetectedProblem(i18n("Vera++")));
 
-            problem->setSource(KDevelop::IProblem::Plugin);
             problem->setSeverity(KDevelop::IProblem::Warning);
             problem->setDescription(match.captured(3) + ": " + match.captured(4));
             problem->setExplanation(rules::explanation(match.captured(3)));
