@@ -24,6 +24,7 @@
 
 #include <tests/autotestshell.h>
 #include <tests/testcore.h>
+#include <language/editor/documentrange.h>
 
 #include <QtTest/QTest>
 
