@@ -1,4 +1,4 @@
-<!DOCTYPE kpartgui>
+<!DOCTYPE gui SYSTEM "kpartgui.dtd">
 <gui name="kdevverapp" version="9">
 <MenuBar>
   <Menu name="analyze">
