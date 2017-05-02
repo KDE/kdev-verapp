@@ -59,19 +59,29 @@ Plugin::Plugin(QObject* parent, const QVariantList&)
 
     rules::init();
 
-    m_actionFile = new QAction(i18n("Vera++ (Current File)"), this);
-    connect(m_actionFile, &QAction::triggered, [this](){
+    m_menuActionFile = new QAction(i18n("Analyze Current File with Vera++"), this);
+    connect(m_menuActionFile, &QAction::triggered, [this](){
         runVerapp(false);
     });
-    actionCollection()->addAction("verapp_file", m_actionFile);
+    actionCollection()->addAction("verapp_file", m_menuActionFile);
 
-    m_actionProject = new QAction(i18n("Vera++ (Current Project)"), this);
-    connect(m_actionProject, &QAction::triggered, [this](){
+    m_contextActionFile = new QAction(i18n("Vera++"), this);
+    connect(m_contextActionFile, &QAction::triggered, [this]() {
+        runVerapp(false);
+    });
+
+    m_menuActionProject = new QAction(i18n("Analyze Current Project with Vera++"), this);
+    connect(m_menuActionProject, &QAction::triggered, [this](){
         runVerapp(true);
     });
-    actionCollection()->addAction("verapp_project", m_actionProject);
+    actionCollection()->addAction("verapp_project", m_menuActionProject);
 
-    m_actionProjectItem = new QAction("Vera++", this);
+    m_contextActionProject = new QAction(i18n("Vera++"), this);
+    connect(m_contextActionProject, &QAction::triggered, [this]() {
+        runVerapp(true);
+    });
+
+    m_contextActionProjectItem = new QAction("Vera++", this);
 
     connect(core()->documentController(), &KDevelop::IDocumentController::documentClosed,
             this, &Plugin::updateActions);
@@ -120,8 +130,8 @@ void Plugin::updateActions()
 {
     m_project = nullptr;
 
-    m_actionFile->setEnabled(false);
-    m_actionProject->setEnabled(false);
+    m_menuActionFile->setEnabled(false);
+    m_menuActionProject->setEnabled(false);
 
     if (isRunning()) {
         return;
@@ -137,8 +147,8 @@ void Plugin::updateActions()
         return;
     }
 
-    m_actionFile->setEnabled(true);
-    m_actionProject->setEnabled(true);
+    m_menuActionFile->setEnabled(true);
+    m_menuActionProject->setEnabled(true);
 }
 
 void Plugin::projectClosed(KDevelop::IProject* project)
@@ -223,8 +233,8 @@ KDevelop::ContextMenuExtension Plugin::contextMenuExtension(KDevelop::Context* c
     KDevelop::ContextMenuExtension extension;
 
     if (context->hasType(KDevelop::Context::EditorContext) && m_project && !isRunning()) {
-        extension.addAction(KDevelop::ContextMenuExtension::AnalyzeGroup, m_actionFile);
-        extension.addAction(KDevelop::ContextMenuExtension::AnalyzeGroup, m_actionProject);
+        extension.addAction(KDevelop::ContextMenuExtension::AnalyzeFileGroup, m_contextActionFile);
+        extension.addAction(KDevelop::ContextMenuExtension::AnalyzeProjectGroup, m_contextActionProject);
     }
 
     if (context->hasType(KDevelop::Context::ProjectItemContext) && !isRunning()) {
@@ -245,12 +255,12 @@ KDevelop::ContextMenuExtension Plugin::contextMenuExtension(KDevelop::Context* c
                 return extension;
         }
 
-        m_actionProjectItem->disconnect();
-        connect(m_actionProjectItem, &QAction::triggered, [this, item](){
+        m_contextActionProjectItem->disconnect();
+        connect(m_contextActionProjectItem, &QAction::triggered, [this, item](){
             runVerapp(item->project(), item->path().toLocalFile());
         });
 
-        extension.addAction(KDevelop::ContextMenuExtension::AnalyzeGroup, m_actionProjectItem);
+        extension.addAction(KDevelop::ContextMenuExtension::AnalyzeProjectGroup, m_contextActionProjectItem);
     }
 
     return extension;

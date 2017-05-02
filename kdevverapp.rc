@@ -1,12 +1,13 @@
 <!DOCTYPE gui SYSTEM "kpartgui.dtd">
-<gui name="kdevverapp" version="9">
+<gui name="kdevverapp" version="10">
 <MenuBar>
-  <Menu name="analyze">
-  <text context="@title:menu">Analyze</text>
-    <Separator/>
-    <Action name="verapp_file"/>
-    <Action name="verapp_project"/>
-    <Separator/>
+  <Menu name="code">
+    <Menu name="analyze_file">
+      <Action name="verapp_file"/>
+    </Menu>
+    <Menu name="analyze_project">
+      <Action name="verapp_project"/>
+    </Menu>
   </Menu>
 </MenuBar>
 </gui>
