@@ -1,26 +1,26 @@
 project(kdevverapp)
 
+cmake_minimum_required(VERSION 2.8.12)
+cmake_policy(SET CMP0063 NEW)
+
 set(VERSION_MAJOR 1)
 set(VERSION_MINOR 90)
 set(VERSION_PATCH 90)
 # KDevplatform dependency version
 set(KDEVPLATFORM_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 
-cmake_minimum_required(VERSION 2.8.12)
 find_package (ECM 0.0.9 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 
-include(ECMAddTests)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings)
+include(ECMAddTests)
 include(FeatureSummary)
 
-find_package(Qt5 REQUIRED Core Widgets Test)
-find_package(KF5 REQUIRED COMPONENTS ItemModels)
 find_package(KDevPlatform ${KDEVPLATFORM_VERSION} REQUIRED)
-
-set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic" )
+find_package(KF5 REQUIRED COMPONENTS ItemModels)
+find_package(Qt5 REQUIRED Core Widgets Test)
 
 include_directories(
     ${kdevverapp_BINARY_DIR}
