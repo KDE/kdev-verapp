@@ -2,10 +2,6 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project(kdevverapp)
 
-if (NOT ${CMAKE_VERSION} VERSION_LESS "3.3.0")
-    cmake_policy(SET CMP0063 NEW)
-endif()
-
 set(VERSION_MAJOR 1)
 set(VERSION_MINOR 90)
 set(VERSION_PATCH 90)
@@ -17,7 +13,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
-include(KDECompilerSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddTests)
 include(FeatureSummary)
 
