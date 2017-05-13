@@ -1,6 +1,6 @@
-project(kdevverapp)
-
 cmake_minimum_required(VERSION 2.8.12)
+
+project(kdevverapp)
 
 if (NOT ${CMAKE_VERSION} VERSION_LESS "3.3.0")
     cmake_policy(SET CMP0063 NEW)
