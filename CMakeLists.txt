@@ -8,13 +8,14 @@ set(VERSION_PATCH 90)
 # KDevplatform dependency version
 set(KDEVPLATFORM_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 
-find_package (ECM 0.0.9 REQUIRED NO_MODULE)
+find_package (ECM "5.14.0" REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMAddTests)
+include(ECMQtDeclareLoggingCategory)
 include(FeatureSummary)
 
 find_package(KDevPlatform ${KDEVPLATFORM_VERSION} REQUIRED)
@@ -44,13 +45,18 @@ qt5_add_resources(kdevverapp_SRCS
     kdevverapp.qrc
 )
 
+ecm_qt_declare_logging_category(kdevverapp_LOG_SRCS
+    HEADER debug.h
+    IDENTIFIER KDEV_VERAPP
+    CATEGORY_NAME "kdevelop.analyzers.verapp"
+)
+
 kconfig_add_kcfg_files(kdevverapp_CONFIG_SRCS
     config/globalsettings.kcfgc
     config/projectsettings.kcfgc
 )
 
 add_library(kdevverapp_core STATIC
-    debug.cpp
     job.cpp
     parameters.cpp
     utils.cpp
@@ -59,6 +65,7 @@ add_library(kdevverapp_core STATIC
     rules/rules_db.cpp
 
     ${kdevverapp_CONFIG_SRCS}
+    ${kdevverapp_LOG_SRCS}
 )
 
 target_link_libraries(kdevverapp_core
