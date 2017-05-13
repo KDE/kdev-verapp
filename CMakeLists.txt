@@ -85,4 +85,7 @@ target_link_libraries(kdevverapp
 
 add_subdirectory(tests)
 
+# kdebugsettings file
+install(FILES kdevverapp.categories DESTINATION ${KDE_INSTALL_CONFDIR})
+
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
