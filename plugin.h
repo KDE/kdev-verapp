@@ -53,7 +53,7 @@ public:
     int perProjectConfigPages() const override { return 1; }
     KDevelop::ConfigPage* perProjectConfigPage(int number, const KDevelop::ProjectConfigOptions& options, QWidget* parent) override;
 
-    KDevelop::ContextMenuExtension contextMenuExtension(KDevelop::Context* context) override;
+    KDevelop::ContextMenuExtension contextMenuExtension(KDevelop::Context* context, QWidget* parent) override;
 
     void runVerapp(KDevelop::IProject* project, const QString& path);
     bool isRunning();
