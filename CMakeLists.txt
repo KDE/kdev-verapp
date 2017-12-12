@@ -15,7 +15,7 @@ include(FeatureSummary)
 set(QT_MIN_VERSION "5.5.0")
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core Widgets Test)
 set(KF5_DEP_VERSION "5.15.0")
-find_package(KF5 ${KF5_DEP_VERSION} REQUIRED COMPONENTS ItemModels)
+find_package(KF5 ${KF5_DEP_VERSION} REQUIRED COMPONENTS I18n)
 set(KDEVPLATFORM_DEP_VERSION "5.2.40")
 find_package(KDevPlatform ${KDEVPLATFORM_DEP_VERSION} CONFIG)
 set_package_properties(KDevPlatform PROPERTIES
@@ -72,6 +72,7 @@ target_link_libraries(kdevverapp_core
     KDev::Project
     KDev::Language
     KDev::Shell
+    KF5::I18n
 )
 
 kdevplatform_add_plugin(kdevverapp
