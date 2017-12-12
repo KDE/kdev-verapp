@@ -23,8 +23,6 @@ set_package_properties(KDevPlatform PROPERTIES
 )
 
 include_directories(
-    ${kdevverapp_BINARY_DIR}
-    ${kdevverapp_SOURCE_DIR}
     ${kdevverapp_SOURCE_DIR}/rules
 )
 
