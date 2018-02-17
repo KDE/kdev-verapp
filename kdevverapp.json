@@ -2,15 +2,28 @@
     "KPlugin": {
         "Authors": [
             {
-                "Name": "Anton Anikin"
+                "Name": "Anton Anikin",
+                "Name[x-test]": "xxAnton Anikinxx"
             }
         ],
         "Category": "Analyzers",
         "Description": "This plugin integrates Vera++ to KDevelop",
+        "Description[ca]": "Aquest connector integra el Vera++ al KDevelop",
+        "Description[es]": "Este complemento integra Vera++ en KDevelop",
+        "Description[pt]": "Este 'plugin' integra o Vera++ no KDevelop",
+        "Description[sv]": "Insticksprogrammet integrerar Vera++ i KDevelop",
+        "Description[uk]": "За допомогою цього додатка можна інтегрувати Vera++ до KDevelop",
+        "Description[x-test]": "xxThis plugin integrates Vera++ to KDevelopxx",
         "Icon": "kdevelop",
         "Id": "kdevverapp",
         "License": "GPL",
         "Name": "Vera++ Support",
+        "Name[ca]": "Implementació de Vera++",
+        "Name[es]": "Implementación de Vera++",
+        "Name[pt]": "Suporte para Vera++",
+        "Name[sv]": "Stöd för Vera++",
+        "Name[uk]": "Підтримка Vera++",
+        "Name[x-test]": "xxVera++ Supportxx",
         "ServiceTypes": [
             "KDevelop/Plugin"
         ]
