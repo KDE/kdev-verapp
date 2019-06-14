@@ -22,7 +22,8 @@
                 "Name[sv]": "Anton Anikin",
                 "Name[uk]": "Anton Anikin",
                 "Name[x-test]": "xxAnton Anikinxx",
-                "Name[zh_CN]": "Anton Anikin"
+                "Name[zh_CN]": "Anton Anikin",
+                "Name[zh_TW]": "Anton Anikin"
             }
         ],
         "Category": "Analyzers",
@@ -45,6 +46,7 @@
         "Description[sv]": "Insticksprogrammet integrerar Vera++ i KDevelop",
         "Description[uk]": "За допомогою цього додатка можна інтегрувати Vera++ до KDevelop",
         "Description[x-test]": "xxThis plugin integrates Vera++ to KDevelopxx",
+        "Description[zh_TW]": "此外掛程式將 Vera++ 整合進 KDevelop 中",
         "Icon": "kdevelop",
         "Id": "kdevverapp",
         "License": "GPL",
@@ -67,6 +69,7 @@
         "Name[sv]": "Stöd för Vera++",
         "Name[uk]": "Підтримка Vera++",
         "Name[x-test]": "xxVera++ Supportxx",
+        "Name[zh_TW]": "Vera++ 支援",
         "ServiceTypes": [
             "KDevelop/Plugin"
         ]
