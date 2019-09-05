@@ -23,6 +23,7 @@
 #include "globalsettings.h"
 #include "projectsettings.h"
 #include "rules.h"
+#include "utils.h"
 
 #include <KShell>
 #include <klocalizedstring.h>
@@ -54,11 +55,6 @@ bool hideOutputView()
     return true;
 }
 
-QString fileFilter()
-{
-    return QStringLiteral("*.h,*.hxx,*.hpp,*.hh,*.h++,*.H,*.tlh,*.cpp,*.cc,*.C,*.c++,*.cxx,*.ocl,*.inl,*.idl,*.c,*.m,*.mm,*.M,*.y,*.ypp,*.yxx,*.y++,*.l");
-}
-
 }
 
 Parameters::Parameters(KDevelop::IProject* project)
@@ -74,7 +70,6 @@ Parameters::Parameters(KDevelop::IProject* project)
             m_ruleEnabled[ruleType] = defaults::isRuleEnabled(ruleType);
         }
 
-        fileFilter = defaults::fileFilter();
         return;
     }
 
@@ -89,7 +84,6 @@ Parameters::Parameters(KDevelop::IProject* project)
     }
 
     extraParameters = projectSettings.extraParameters();
-    fileFilter = projectSettings.fileFilter();
 
     m_projectRootPath  = m_project->path();
     m_projectBuildPath = m_project->buildSystemManager()->buildDirectory(m_project->projectItem());
@@ -129,7 +123,6 @@ QString Parameters::buildRunScript() const
         projectFiles.insert(KDevelop::IndexedString(checkPath));
     } else if (m_project) {
         projectFiles = m_project->fileSet();
-        QStringList filters = fileFilter.split(',', QString::SkipEmptyParts);
 
         QMutableSetIterator<KDevelop::IndexedString> i(projectFiles);
         while (i.hasNext()) {
@@ -140,7 +133,7 @@ QString Parameters::buildRunScript() const
                 continue;
             }
 
-            if (!QDir::match(filters, projectFile)) {
+            if (!isSupportedFile(projectFile)) {
                 i.remove();
             }
         }

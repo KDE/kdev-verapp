@@ -22,9 +22,14 @@
 
 #include <QString>
 
+class QUrl;
+
 namespace verapp
 {
 
 QString prettyPathName(const QString& path);
+
+bool isSupportedFile(const QString& fileName);
+bool isSupportedUrl(const QUrl& url);
 
 }

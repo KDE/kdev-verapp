@@ -23,6 +23,8 @@
 #include <interfaces/icore.h>
 #include <interfaces/iprojectcontroller.h>
 
+#include <QMimeDatabase>
+
 namespace verapp
 {
 
@@ -32,5 +34,25 @@ QString prettyPathName(const QString& path)
         QUrl::fromLocalFile(path),
         KDevelop::IProjectController::FormatPlain);
 }
+
+bool isSupportedMimeType(const QMimeType& mimeType)
+{
+    const QString mimeName = mimeType.name();
+    return (mimeName == QLatin1String("text/x-c++src") ||
+            mimeName == QLatin1String("text/x-c++hdr") ||
+            mimeName == QLatin1String("text/x-chdr")   ||
+            mimeName == QLatin1String("text/x-csrc"));
+}
+
+bool isSupportedFile(const QString& fileName)
+{
+    return isSupportedMimeType(QMimeDatabase().mimeTypeForFile(fileName));
+}
+
+bool isSupportedUrl(const QUrl& url)
+{
+    return isSupportedMimeType(QMimeDatabase().mimeTypeForUrl(url));
+}
+
 
 }

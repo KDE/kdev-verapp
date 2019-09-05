@@ -70,20 +70,6 @@
    <item>
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>File Filter</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="kcfg_fileFilter">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
       <widget class="QLabel" name="label_3">
        <property name="text">
         <string>&amp;Extra parameters:</string>
@@ -93,7 +79,7 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
+     <item row="0" column="1">
       <widget class="QLineEdit" name="kcfg_extraParameters">
        <property name="toolTip">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Defines additional parameters for vera++ (see documentation).&lt;/p&gt;&lt;p&gt;You can use the following placeholders:&lt;/p&gt;&lt;p&gt;%p - Gets replaced by the URL of the project's root directory.&lt;/p&gt;&lt;p&gt;%b - Gets replaced by the URL of the project's build directory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -159,7 +145,6 @@
  </widget>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>kcfg_fileFilter</tabstop>
   <tabstop>kcfg_extraParameters</tabstop>
   <tabstop>commandLineFilter</tabstop>
   <tabstop>commandLineBreaks</tabstop>

@@ -25,6 +25,7 @@
 #include "debug.h"
 #include "problemmodel.h"
 #include "rules.h"
+#include "utils.h"
 
 #include <interfaces/contextmenuextension.h>
 #include <interfaces/icore.h>
@@ -234,7 +235,12 @@ KDevelop::ContextMenuExtension Plugin::contextMenuExtension(KDevelop::Context* c
     KDevelop::ContextMenuExtension extension;
 
     if (context->hasType(KDevelop::Context::EditorContext) && m_project && !isRunning()) {
-        extension.addAction(KDevelop::ContextMenuExtension::AnalyzeFileGroup, m_contextActionFile);
+        auto eContext = static_cast<KDevelop::EditorContext*>(context);
+        if (isSupportedUrl(eContext->url()))
+        {
+            extension.addAction(KDevelop::ContextMenuExtension::AnalyzeFileGroup, m_contextActionFile);
+        }
+
         extension.addAction(KDevelop::ContextMenuExtension::AnalyzeProjectGroup, m_contextActionProject);
     }
 
@@ -247,7 +253,12 @@ KDevelop::ContextMenuExtension Plugin::contextMenuExtension(KDevelop::Context* c
         auto item = pContext->items().first();
 
         switch (item->type()) {
-            case KDevelop::ProjectBaseItem::File:
+            case KDevelop::ProjectBaseItem::File: {
+                if (!isSupportedUrl(item->path().toUrl())) {
+                    return extension;
+                }
+                break;
+            }
             case KDevelop::ProjectBaseItem::Folder:
             case KDevelop::ProjectBaseItem::BuildFolder:
                 break;

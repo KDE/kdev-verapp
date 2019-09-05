@@ -39,8 +39,6 @@ namespace defaults
 QString executablePath();
 bool hideOutputView();
 
-QString fileFilter();
-
 bool isRuleEnabled(rules::Type type);
 
 }
@@ -63,7 +61,6 @@ public:
     bool isRuleEnabled(rules::Type type) const;
     void setRuleEnabled(rules::Type type, bool value);
 
-    QString fileFilter;
     QString extraParameters;
 
     QString checkPath;
