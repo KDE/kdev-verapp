@@ -34,7 +34,7 @@
         ],
         "Category": "Analyzers",
         "Description": "This plugin integrates Vera++ to KDevelop",
-        "Description[ca@valencia]": "Este conector integra Vera++ a KDevelop",
+        "Description[ca@valencia]": "Este connector integra Vera++ a KDevelop",
         "Description[ca]": "Aquest connector integra el Vera++ al KDevelop",
         "Description[cs]": "Tento modul integruje do KDevelop Vera++",
         "Description[de]": "Dieses Modul integriert Vera++ in KDevelop",
