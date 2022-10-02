@@ -1,0 +1,208 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kdev-verapp package.
+#
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2018.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdev-verapp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2019-09-06 03:32+0200\n"
+"PO-Revision-Date: 2018-08-16 17:48+0100\n"
+"Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
+"Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: config/globalconfigpage.cpp:49 config/projectconfigpage.cpp:79 job.cpp:80
+#: plugin.cpp:69 plugin.cpp:80 problemmodel.cpp:55
+#, kde-format
+msgid "Vera++"
+msgstr "Vera++"
+
+#: config/globalconfigpage.cpp:54
+#, kde-format
+msgid "Configure Vera++ Settings"
+msgstr "Instellingen van Vera++ configureren"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, verapp::GlobalConfigPage)
+#: config/globalconfigpage.ui:14
+#, kde-format
+msgid "Cppcheck Settings"
+msgstr "Cppcheck-instellingen"
+
+#. i18n: ectx: property (title), widget (QGroupBox, pathsGroupBox)
+#: config/globalconfigpage.ui:32
+#, kde-format
+msgid "Executables"
+msgstr "Uitvoerbare bestanden"
+
+#. i18n: ectx: property (text), widget (QLabel, verappLabel)
+#: config/globalconfigpage.ui:38
+#, kde-format
+msgid "Vera++:"
+msgstr "Vera++:"
+
+#. i18n: ectx: property (title), widget (QGroupBox, outputGroupBox)
+#: config/globalconfigpage.ui:57
+#, kde-format
+msgid "Output"
+msgstr "Uitvoer"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_hideOutputView)
+#: config/globalconfigpage.ui:63
+#, kde-format
+msgid "Hide output view during check"
+msgstr "Uitvoerweergave verbergen tijdens controle"
+
+#. i18n: ectx: property (title), widget (QGroupBox, AdditionalChecksGroupBox)
+#: config/projectconfigpage.ui:23
+#, kde-format
+msgid "Built-in Rules"
+msgstr "Ingebouwde regels"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tabF)
+#: config/projectconfigpage.ui:42
+#, kde-format
+msgid "F"
+msgstr "F"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tabL)
+#: config/projectconfigpage.ui:47
+#, kde-format
+msgid "L"
+msgstr "L"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tabT1)
+#: config/projectconfigpage.ui:52
+#, kde-format
+msgid "T 1-7"
+msgstr "T 1-7"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tabT2)
+#: config/projectconfigpage.ui:57
+#, kde-format
+msgid "T 8-14"
+msgstr "T 8-14"
+
+#. i18n: ectx: attribute (title), widget (QWidget, tabT3)
+#: config/projectconfigpage.ui:62
+#, kde-format
+msgid "T 15-19"
+msgstr "T 15-19"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: config/projectconfigpage.ui:75
+#, kde-format
+msgid "&Extra parameters:"
+msgstr "&Extra parameters:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, kcfg_extraParameters)
+#: config/projectconfigpage.ui:85
+#, no-c-format, kde-format
+msgid ""
+"<html><head/><body><p>Defines additional parameters for vera++ (see "
+"documentation).</p><p>You can use the following placeholders:</p><p>%p - "
+"Gets replaced by the URL of the project's root directory.</p><p>%b - Gets "
+"replaced by the URL of the project's build directory.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Definieert extra parameters voor vera++ (zie "
+"documentatie).</p><p>U kunt de volgende plaatshouders gebruiken:</p><p>%p - "
+"wordt vervangen door de URL van de hoofdmap van het project.</p><p>%b - "
+"wordt vervangen door de URL van de bouwmap van het project.</p></body></html>"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: config/projectconfigpage.ui:94
+#, kde-format
+msgid "Command line"
+msgstr "Opdrachtregel"
+
+#. i18n: ectx: property (text), widget (QLabel, commandLineFilterLabel)
+#: config/projectconfigpage.ui:102
+#, kde-format
+msgid "&Filter:"
+msgstr "&Filter:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, commandLineBreaks)
+#: config/projectconfigpage.ui:119
+#, kde-format
+msgid "Break lines"
+msgstr "Regels afbreken"
+
+#: job.cpp:43
+#, kde-format
+msgid "Vera++ Analysis (%1)"
+msgstr "Vera++ analyse (%1)"
+
+#: job.cpp:147
+#, kde-format
+msgid "Failed to start Vera++ from \"%1\"."
+msgstr "Opstarten van Vera++ vanuit \"%1\" is mislukt."
+
+#: job.cpp:152
+#, kde-format
+msgid "Vera++ crashed."
+msgstr "Vera++ is gecrasht."
+
+#: job.cpp:157
+#, kde-format
+msgid "Vera++ process timed out."
+msgstr "Wachttijd voor proces Vera++ is verstreken."
+
+#: job.cpp:161
+#, kde-format
+msgid "Write to Vera++ process failed."
+msgstr "Schrijven naar process Vera++ is mislukt."
+
+#: job.cpp:165
+#, kde-format
+msgid "Read from Vera++ process failed."
+msgstr "Lezen van process Vera++ is mislukt."
+
+#: job.cpp:175 parameters.cpp:159 plugin.cpp:190
+#, kde-format
+msgid "Vera++ Error"
+msgstr "Vera++-fout"
+
+#: parameters.cpp:160
+#, kde-format
+msgid "Unable to open file '%1' to write"
+msgstr "Bestand '%1' kon niet worden geopend voor schrijven"
+
+#: plugin.cpp:63
+#, kde-format
+msgid "Analyze Current File with Vera++"
+msgstr "Huidig bestand analyseren met Vera++"
+
+#: plugin.cpp:74
+#, kde-format
+msgid "Analyze Current Project with Vera++"
+msgstr "Huidig project analyseren met Vera++"
+
+#: plugin.cpp:125
+#, kde-format
+msgctxt "@title:window"
+msgid "Test"
+msgstr "Testen"
+
+#: plugin.cpp:186
+#, kde-format
+msgid "Failed to start vera++ from \"%1\"."
+msgstr "Opstarten van Vera++ vanuit \"%1\" is mislukt."
+
+#: plugin.cpp:188
+#, kde-format
+msgid "Check your settings and install the vera++ if necessary."
+msgstr "Controleer uw instellingen en installeer de Vera++ indien nodig."
+
+#: problemmodel.cpp:107
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Re-Run Last Vera++ Analysis"
+msgstr "Laatste analyse van Vera++ opnieuw uitvoeren"
+
+#~ msgid "File Filter"
+#~ msgstr "Bestandsfilter"
