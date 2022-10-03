@@ -1,21 +1,22 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kdev-verapp package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: kdeorg\n"
+"Project-Id-Version: kdev-verapp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2019-09-06 03:32+0200\n"
-"PO-Revision-Date: 2022-10-02 15:49\n"
-"Last-Translator: \n"
-"Language-Team: Chinese Simplified\n"
-"Language: zh_CN\n"
+"PO-Revision-Date: 2022-10-02 07:45+0200\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
+"Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Crowdin-Project: kdeorg\n"
-"X-Crowdin-Project-ID: 269464\n"
-"X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-trunk/messages/kdev-verapp/kdevverapp.pot\n"
-"X-Crowdin-File-ID: 7529\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: config/globalconfigpage.cpp:49 config/projectconfigpage.cpp:79 job.cpp:80
 #: plugin.cpp:69 plugin.cpp:80 problemmodel.cpp:55
@@ -26,19 +27,19 @@ msgstr "Vera++"
 #: config/globalconfigpage.cpp:54
 #, kde-format
 msgid "Configure Vera++ Settings"
-msgstr ""
+msgstr "Vera++ -ის მორგება"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, verapp::GlobalConfigPage)
 #: config/globalconfigpage.ui:14
 #, kde-format
 msgid "Cppcheck Settings"
-msgstr "Cppcheck 设置"
+msgstr "Cppcheck -ის მორგება"
 
 #. i18n: ectx: property (title), widget (QGroupBox, pathsGroupBox)
 #: config/globalconfigpage.ui:32
 #, kde-format
 msgid "Executables"
-msgstr "可执行文件"
+msgstr "გამშვებები"
 
 #. i18n: ectx: property (text), widget (QLabel, verappLabel)
 #: config/globalconfigpage.ui:38
@@ -50,19 +51,19 @@ msgstr "Vera++:"
 #: config/globalconfigpage.ui:57
 #, kde-format
 msgid "Output"
-msgstr "输出"
+msgstr "გამოტანა"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_hideOutputView)
 #: config/globalconfigpage.ui:63
 #, kde-format
 msgid "Hide output view during check"
-msgstr "在检查时隐藏输出视图"
+msgstr "შემოწმებისას გამოტანის დამალვა"
 
 #. i18n: ectx: property (title), widget (QGroupBox, AdditionalChecksGroupBox)
 #: config/projectconfigpage.ui:23
 #, kde-format
 msgid "Built-in Rules"
-msgstr ""
+msgstr "ჩაშენებული წესები"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabF)
 #: config/projectconfigpage.ui:42
@@ -80,25 +81,25 @@ msgstr "L"
 #: config/projectconfigpage.ui:52
 #, kde-format
 msgid "T 1-7"
-msgstr ""
+msgstr "T 1-7"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabT2)
 #: config/projectconfigpage.ui:57
 #, kde-format
 msgid "T 8-14"
-msgstr ""
+msgstr "T 8-14"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabT3)
 #: config/projectconfigpage.ui:62
 #, kde-format
 msgid "T 15-19"
-msgstr ""
+msgstr "T 15-19"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: config/projectconfigpage.ui:75
 #, kde-format
 msgid "&Extra parameters:"
-msgstr "&额外参数:"
+msgstr "&დამატებითი პარამეტრები:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, kcfg_extraParameters)
 #: config/projectconfigpage.ui:85
@@ -114,88 +115,88 @@ msgstr ""
 #: config/projectconfigpage.ui:94
 #, kde-format
 msgid "Command line"
-msgstr ""
+msgstr "ბრძანების სტრიქონი"
 
 #. i18n: ectx: property (text), widget (QLabel, commandLineFilterLabel)
 #: config/projectconfigpage.ui:102
 #, kde-format
 msgid "&Filter:"
-msgstr "过滤(&F)："
+msgstr "&ფილტრი:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, commandLineBreaks)
 #: config/projectconfigpage.ui:119
 #, kde-format
 msgid "Break lines"
-msgstr "断行："
+msgstr "ხაზების გატეხვა"
 
 #: job.cpp:43
 #, kde-format
 msgid "Vera++ Analysis (%1)"
-msgstr ""
+msgstr "Vera++ ანალიზი (%1)"
 
 #: job.cpp:147
 #, kde-format
 msgid "Failed to start Vera++ from \"%1\"."
-msgstr ""
+msgstr "\"%1\"-დან Vera++ -ის გაშვების შეცდომა."
 
 #: job.cpp:152
 #, kde-format
 msgid "Vera++ crashed."
-msgstr ""
+msgstr "Vera++ ავარიულად დასრულდა."
 
 #: job.cpp:157
 #, kde-format
 msgid "Vera++ process timed out."
-msgstr ""
+msgstr "Vera++ -ის პროცესის მოლოდინის ვადა ამოიწურა."
 
 #: job.cpp:161
 #, kde-format
 msgid "Write to Vera++ process failed."
-msgstr ""
+msgstr "Vera++ -ის პროცესში ჩაწერის შეცდომა."
 
 #: job.cpp:165
 #, kde-format
 msgid "Read from Vera++ process failed."
-msgstr ""
+msgstr "Vera++ -ის პროცესიდან წაკითხვის შეცდომა."
 
 #: job.cpp:175 parameters.cpp:159 plugin.cpp:190
 #, kde-format
 msgid "Vera++ Error"
-msgstr ""
+msgstr "Vera++ -ის შეცდომა"
 
 #: parameters.cpp:160
 #, kde-format
 msgid "Unable to open file '%1' to write"
-msgstr ""
+msgstr "ფაილის (%1) ჩასაწერად გახსნის შეცდომა"
 
 #: plugin.cpp:63
 #, kde-format
 msgid "Analyze Current File with Vera++"
-msgstr ""
+msgstr "მიმდინარე ფაილის Vera++ -ით ანალიზი"
 
 #: plugin.cpp:74
 #, kde-format
 msgid "Analyze Current Project with Vera++"
-msgstr ""
+msgstr "მიმდინარე პროექტის Vera++ -ით ანალიზი"
 
 #: plugin.cpp:125
 #, kde-format
 msgctxt "@title:window"
 msgid "Test"
-msgstr "测试"
+msgstr "შემოწმება"
 
 #: plugin.cpp:186
 #, kde-format
 msgid "Failed to start vera++ from \"%1\"."
-msgstr ""
+msgstr "\"%1\"-დან Vera++ -ის გაშვების შეცდომა."
 
 #: plugin.cpp:188
 #, kde-format
 msgid "Check your settings and install the vera++ if necessary."
-msgstr ""
+msgstr "შეამოწმეთ პარამეტრები და თუ საჭიროა, დააყენეთ vera++."
 
 #: problemmodel.cpp:107
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Re-Run Last Vera++ Analysis"
-msgstr ""
+msgstr "Vera++ -ის ბოლო ანალიზის თავიდან გაშვება"
