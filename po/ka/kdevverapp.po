@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kdev-verapp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2019-09-06 03:32+0200\n"
-"PO-Revision-Date: 2022-10-02 07:45+0200\n"
+"PO-Revision-Date: 2022-10-31 05:31+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #: config/globalconfigpage.cpp:49 config/projectconfigpage.cpp:79 job.cpp:80
 #: plugin.cpp:69 plugin.cpp:80 problemmodel.cpp:55
@@ -110,6 +110,10 @@ msgid ""
 "Gets replaced by the URL of the project's root directory.</p><p>%b - Gets "
 "replaced by the URL of the project's build directory.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>აღწერს vera++ -ის დამატებით პარამეტრებს (იხილეთ "
+"დოკუმენტაცია).</p><p>შეგიძლიათ გამოიყენოთ შემდეგი ჩამნაცვლებლები:</p><p>%p - "
+"პროექტის საწყისი საქაღალდით შეიცვლება.</p><p>%b - პროექტის აგების საქაღალდით "
+"შეიცვლება.</p></body></html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: config/projectconfigpage.ui:94
