@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kdev-verapp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2019-09-06 03:32+0200\n"
-"PO-Revision-Date: 2022-04-07 13:20+0300\n"
+"PO-Revision-Date: 2022-11-22 17:17+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.08.3\n"
 
 #: config/globalconfigpage.cpp:49 config/projectconfigpage.cpp:79 job.cpp:80
 #: plugin.cpp:69 plugin.cpp:80 problemmodel.cpp:55
@@ -124,7 +124,7 @@ msgstr "Komut satırı"
 #: config/projectconfigpage.ui:102
 #, kde-format
 msgid "&Filter:"
-msgstr "&Süzgeç:"
+msgstr "S&üz:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, commandLineBreaks)
 #: config/projectconfigpage.ui:119
