@@ -35,7 +35,7 @@ msgstr "Configura la configuració de Vera++"
 #: config/globalconfigpage.ui:14
 #, kde-format
 msgid "Cppcheck Settings"
-msgstr "Configuració de Cppcheck"
+msgstr "Configureu Cppcheck"
 
 #. i18n: ectx: property (title), widget (QGroupBox, pathsGroupBox)
 #: config/globalconfigpage.ui:32
