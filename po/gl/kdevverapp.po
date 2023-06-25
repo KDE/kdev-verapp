@@ -1,20 +1,21 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the kdev-verapp package.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2018, 2023.
 #
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: kdev-verapp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2019-09-06 03:32+0200\n"
-"PO-Revision-Date: 2018-12-16 20:27+0100\n"
+"PO-Revision-Date: 2023-06-24 10:11+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
-"Language-Team: Galician <kde-i18n-doc@kde.org>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.04.2\n"
 
 #: config/globalconfigpage.cpp:49 config/projectconfigpage.cpp:79 job.cpp:80
 #: plugin.cpp:69 plugin.cpp:80 problemmodel.cpp:55
@@ -61,7 +62,7 @@ msgstr "Agochar a vista da saída durante as comprobacións."
 #: config/projectconfigpage.ui:23
 #, kde-format
 msgid "Built-in Rules"
-msgstr "Regras incorporadas"
+msgstr "Regras de serie"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabF)
 #: config/projectconfigpage.ui:42
@@ -110,8 +111,8 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Define parámetros adicionais para vera++ (consulte a "
 "documentación).</p> <p>Pode usar as seguintes marcas de substitución:</p> <p>"
-"%p - Substitúese polo URL do directorio raíz do proxecto.</p> <p>%b - "
-"substitúese polo URL do directorio de construción do proxecto.</p></body></"
+"%p - Substitúese polo URL do cartafol raíz do proxecto.</p> <p>%b - "
+"substitúese polo URL do cartafol de construción do proxecto.</p></body></"
 "html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
@@ -202,7 +203,7 @@ msgstr "Comprobe a configuración e instale vera++ se é necesario."
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Re-Run Last Vera++ Analysis"
-msgstr "Executar de novo a última análise de Vera++"
+msgstr "Executar de novo a última análise de Vera++."
 
 #~ msgid "File Filter"
 #~ msgstr "Filtro de ficheiros"
