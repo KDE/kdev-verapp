@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2019-09-06 03:32+0200\n"
-"PO-Revision-Date: 2023-07-03 11:38\n"
+"PO-Revision-Date: 2023-07-18 11:11\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -26,7 +26,7 @@ msgstr "Vera++"
 #: config/globalconfigpage.cpp:54
 #, kde-format
 msgid "Configure Vera++ Settings"
-msgstr ""
+msgstr "配置 Vera++ 设置"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, verapp::GlobalConfigPage)
 #: config/globalconfigpage.ui:14
@@ -62,7 +62,7 @@ msgstr "在检查时隐藏输出视图"
 #: config/projectconfigpage.ui:23
 #, kde-format
 msgid "Built-in Rules"
-msgstr ""
+msgstr "内置规则"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabF)
 #: config/projectconfigpage.ui:42
@@ -114,7 +114,7 @@ msgstr ""
 #: config/projectconfigpage.ui:94
 #, kde-format
 msgid "Command line"
-msgstr ""
+msgstr "命令行"
 
 #. i18n: ectx: property (text), widget (QLabel, commandLineFilterLabel)
 #: config/projectconfigpage.ui:102
@@ -131,7 +131,7 @@ msgstr "断行："
 #: job.cpp:43
 #, kde-format
 msgid "Vera++ Analysis (%1)"
-msgstr ""
+msgstr "Vera++ 分析 (%1)"
 
 #: job.cpp:147
 #, kde-format
@@ -141,12 +141,12 @@ msgstr ""
 #: job.cpp:152
 #, kde-format
 msgid "Vera++ crashed."
-msgstr ""
+msgstr "Vera++ 崩溃了。"
 
 #: job.cpp:157
 #, kde-format
 msgid "Vera++ process timed out."
-msgstr ""
+msgstr "Vera++ 进程超时。"
 
 #: job.cpp:161
 #, kde-format
@@ -161,7 +161,7 @@ msgstr ""
 #: job.cpp:175 parameters.cpp:159 plugin.cpp:190
 #, kde-format
 msgid "Vera++ Error"
-msgstr ""
+msgstr "Vera++ 出错"
 
 #: parameters.cpp:160
 #, kde-format
@@ -171,12 +171,12 @@ msgstr ""
 #: plugin.cpp:63
 #, kde-format
 msgid "Analyze Current File with Vera++"
-msgstr ""
+msgstr "用 Vera++ 分析当前文件"
 
 #: plugin.cpp:74
 #, kde-format
 msgid "Analyze Current Project with Vera++"
-msgstr ""
+msgstr "使用 Vera++ 分析当前项目"
 
 #: plugin.cpp:125
 #, kde-format
@@ -187,7 +187,7 @@ msgstr "测试"
 #: plugin.cpp:186
 #, kde-format
 msgid "Failed to start vera++ from \"%1\"."
-msgstr ""
+msgstr "无法从“%1”启动 vera++。"
 
 #: plugin.cpp:188
 #, kde-format
@@ -198,4 +198,4 @@ msgstr ""
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Re-Run Last Vera++ Analysis"
-msgstr ""
+msgstr "重新运行上次的 Vera++ 分析"
