@@ -141,7 +141,7 @@ msgstr "Análise de Vera++ (%1)"
 #: job.cpp:147
 #, kde-format
 msgid "Failed to start Vera++ from \"%1\"."
-msgstr "Non se puido iniciar Vera++ desde «%1»."
+msgstr "Non foi posíbel iniciar Vera++ desde «%1»."
 
 #: job.cpp:152
 #, kde-format
@@ -171,7 +171,7 @@ msgstr "Erro de Vera++"
 #: parameters.cpp:160
 #, kde-format
 msgid "Unable to open file '%1' to write"
-msgstr "Non se pode abrir o ficheiro «%1» para escribir"
+msgstr "Non é posíbel abrir o ficheiro «%1» para escribir"
 
 #: plugin.cpp:63
 #, kde-format
@@ -192,7 +192,7 @@ msgstr "Probar"
 #: plugin.cpp:186
 #, kde-format
 msgid "Failed to start vera++ from \"%1\"."
-msgstr "Non se puido iniciar vera++ desde «%1»."
+msgstr "Non foi posíbel iniciar vera++ desde «%1»."
 
 #: plugin.cpp:188
 #, kde-format
