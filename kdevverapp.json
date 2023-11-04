@@ -30,7 +30,6 @@
                 "Name[sv]": "Anton Anikin",
                 "Name[tr]": "Anton Anikin",
                 "Name[uk]": "Anton Anikin",
-                "Name[x-test]": "xxAnton Anikinxx",
                 "Name[zh_CN]": "Anton Anikin",
                 "Name[zh_TW]": "Anton Anikin"
             }
@@ -63,7 +62,6 @@
         "Description[sv]": "Insticksprogrammet integrerar Vera++ i KDevelop",
         "Description[tr]": "Bu eklenti, Vera++'yı K Geliştir'e tümleştirir",
         "Description[uk]": "За допомогою цього додатка можна інтегрувати Vera++ до KDevelop",
-        "Description[x-test]": "xxThis plugin integrates Vera++ to KDevelopxx",
         "Description[zh_CN]": "此插件将 Vera++ 整合到 KDevelop",
         "Description[zh_TW]": "此外掛程式將 Vera++ 整合進 KDevelop 中",
         "Icon": "kdevelop",
@@ -96,7 +94,6 @@
         "Name[sv]": "Stöd för Vera++",
         "Name[tr]": "Vera++ Desteği",
         "Name[uk]": "Підтримка Vera++",
-        "Name[x-test]": "xxVera++ Supportxx",
         "Name[zh_CN]": "Vera++ 支持",
         "Name[zh_TW]": "Vera++ 支援",
         "ServiceTypes": [
