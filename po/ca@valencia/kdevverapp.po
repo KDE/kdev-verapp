@@ -154,7 +154,7 @@ msgstr "Vera++ ha fallat."
 #: job.cpp:157
 #, kde-format
 msgid "Vera++ process timed out."
-msgstr "El procés de Vera++ ha excedit el temps límit."
+msgstr "El procés de Vera++ ha excedit el temps."
 
 #: job.cpp:161
 #, kde-format
