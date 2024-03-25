@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kdev-verapp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:28+0000\n"
-"PO-Revision-Date: 2024-02-26 21:30+0100\n"
+"PO-Revision-Date: 2024-03-24 10:34+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo.org>\n"
 "Language: eo\n"
@@ -22,18 +22,18 @@ msgstr ""
 #: plugin.cpp:69 plugin.cpp:80 problemmodel.cpp:55
 #, kde-format
 msgid "Vera++"
-msgstr ""
+msgstr "Vera++"
 
 #: config/globalconfigpage.cpp:54
 #, kde-format
 msgid "Configure Vera++ Settings"
-msgstr ""
+msgstr "Agordi Vera++ Agordojn"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, verapp::GlobalConfigPage)
 #: config/globalconfigpage.ui:14
 #, kde-format
 msgid "Cppcheck Settings"
-msgstr ""
+msgstr "Cppcheck Agordoj"
 
 #. i18n: ectx: property (title), widget (QGroupBox, pathsGroupBox)
 #: config/globalconfigpage.ui:32
@@ -45,7 +45,7 @@ msgstr "Binarprogramoj"
 #: config/globalconfigpage.ui:38
 #, kde-format
 msgid "Vera++:"
-msgstr ""
+msgstr "Vera++:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, outputGroupBox)
 #: config/globalconfigpage.ui:57
@@ -63,7 +63,7 @@ msgstr "Kaŝi eligvidon dum kontrolo"
 #: config/projectconfigpage.ui:23
 #, kde-format
 msgid "Built-in Rules"
-msgstr ""
+msgstr "Enkonstruitaj Reguloj"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabF)
 #: config/projectconfigpage.ui:42
@@ -81,19 +81,19 @@ msgstr "L"
 #: config/projectconfigpage.ui:52
 #, kde-format
 msgid "T 1-7"
-msgstr ""
+msgstr "T 1-7"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabT2)
 #: config/projectconfigpage.ui:57
 #, kde-format
 msgid "T 8-14"
-msgstr ""
+msgstr "T 8-14"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tabT3)
 #: config/projectconfigpage.ui:62
 #, kde-format
 msgid "T 15-19"
-msgstr ""
+msgstr "T 15-19"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: config/projectconfigpage.ui:75
@@ -115,7 +115,7 @@ msgstr ""
 #: config/projectconfigpage.ui:94
 #, kde-format
 msgid "Command line"
-msgstr ""
+msgstr "Komandlinio"
 
 #. i18n: ectx: property (text), widget (QLabel, commandLineFilterLabel)
 #: config/projectconfigpage.ui:102
@@ -132,52 +132,52 @@ msgstr "Romplinioj"
 #: job.cpp:43
 #, kde-format
 msgid "Vera++ Analysis (%1)"
-msgstr ""
+msgstr "Vera++ Analizo (%1)"
 
 #: job.cpp:147
 #, kde-format
 msgid "Failed to start Vera++ from \"%1\"."
-msgstr ""
+msgstr "Malsukcesis lanĉi Vera++ de \"%1\"."
 
 #: job.cpp:152
 #, kde-format
 msgid "Vera++ crashed."
-msgstr ""
+msgstr "Vera++ paneis."
 
 #: job.cpp:157
 #, kde-format
 msgid "Vera++ process timed out."
-msgstr ""
+msgstr "Vera++-procezo elĉerpita."
 
 #: job.cpp:161
 #, kde-format
 msgid "Write to Vera++ process failed."
-msgstr ""
+msgstr "Skribi al Vera++-procezo malsukcesis."
 
 #: job.cpp:165
 #, kde-format
 msgid "Read from Vera++ process failed."
-msgstr ""
+msgstr "Legado de Vera++-procezo malsukcesis."
 
 #: job.cpp:175 parameters.cpp:159 plugin.cpp:190
 #, kde-format
 msgid "Vera++ Error"
-msgstr ""
+msgstr "Vera++ Eraro"
 
 #: parameters.cpp:160
 #, kde-format
 msgid "Unable to open file '%1' to write"
-msgstr ""
+msgstr "Ne eblas malfermi dosieron '%1' por skribi"
 
 #: plugin.cpp:63
 #, kde-format
 msgid "Analyze Current File with Vera++"
-msgstr ""
+msgstr "Analizi Nunan Dosieron kun Vera++"
 
 #: plugin.cpp:74
 #, kde-format
 msgid "Analyze Current Project with Vera++"
-msgstr ""
+msgstr "Analizi Nunan Projekton kun Vera++"
 
 #: plugin.cpp:125
 #, kde-format
@@ -188,15 +188,15 @@ msgstr "Testi"
 #: plugin.cpp:186
 #, kde-format
 msgid "Failed to start vera++ from \"%1\"."
-msgstr ""
+msgstr "Malsukcesis lanĉi vera++ de \"%1\"."
 
 #: plugin.cpp:188
 #, kde-format
 msgid "Check your settings and install the vera++ if necessary."
-msgstr ""
+msgstr "Kontrolu viajn agordojn kaj instalu la vera++ se necese."
 
 #: problemmodel.cpp:107
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Re-Run Last Vera++ Analysis"
-msgstr ""
+msgstr "Re-Run Lastan Vera++ Analizon"
