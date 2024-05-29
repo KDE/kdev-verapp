@@ -16,7 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 19.03.70\n"
 
 #: config/globalconfigpage.cpp:49 config/projectconfigpage.cpp:79 job.cpp:80
 #: plugin.cpp:69 plugin.cpp:80 problemmodel.cpp:55
