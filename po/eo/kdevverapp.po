@@ -1,15 +1,15 @@
 # translation of kdevverapp.pot to Esperanto
 # Copyright (C) 2024 Free Software Foundation, Inc.
 # This file is distributed under the same license as the kdev-verapp package.
-# Oliver Kellogg <okellogg@users.sourceforge.net>, 2024.
+# Oliver Kellogg <olivermkellogg@gmail.com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kdev-verapp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:28+0000\n"
-"PO-Revision-Date: 2024-03-24 10:34+0100\n"
-"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
+"PO-Revision-Date: 2024-05-31 19:37+0200\n"
+"Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -110,6 +110,11 @@ msgid ""
 "Gets replaced by the URL of the project's root directory.</p><p>%b - Gets "
 "replaced by the URL of the project's build directory.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Difinas pliajn parametrojn por vera++ (vidu "
+"dokumentadon).</p><p>Vi povas uzi la jenajn anstataŭaĵojn:</p><p>%p - Estas "
+"anstataŭigita per la URL de la radika dosierujo de la projekto.</p><p>%b - "
+"Estas anstataŭigita per la URL de la konstrua dosierujo de la projekto.</p></"
+"body></html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: config/projectconfigpage.ui:94
