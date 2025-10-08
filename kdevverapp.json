@@ -3,6 +3,7 @@
         "Authors": [
             {
                 "Name": "Anton Anikin",
+                "Name[ar]": "أنطون أنيكين",
                 "Name[ca@valencia]": "Anton Anikin",
                 "Name[ca]": "Anton Anikin",
                 "Name[cs]": "Anton Anikin",
@@ -37,6 +38,7 @@
         ],
         "Category": "Analyzers",
         "Description": "This plugin integrates Vera++ to KDevelop",
+        "Description[ar]": "تكامل هذه الملحقة Vera++ بِمطوّرك",
         "Description[ca@valencia]": "Este connector integra Vera++ a KDevelop",
         "Description[ca]": "Aquest connector integra el Vera++ al KDevelop",
         "Description[cs]": "Tento modul integruje do KDevelop Vera++",
@@ -70,6 +72,7 @@
         "Id": "kdevverapp",
         "License": "GPL",
         "Name": "Vera++ Support",
+        "Name[ar]": "إتاحة Vera++ ",
         "Name[ca@valencia]": "Implementació de Vera++",
         "Name[ca]": "Implementació de Vera++",
         "Name[cs]": "Podpora Vera++",
