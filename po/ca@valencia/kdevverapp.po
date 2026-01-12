@@ -144,7 +144,7 @@ msgstr "Anàlisi de Vera++ (%1)"
 #: job.cpp:147
 #, kde-format
 msgid "Failed to start Vera++ from \"%1\"."
-msgstr "No s'ha pogut iniciar Vera++ des de «%1»."
+msgstr "Ha fallat mentre s'iniciava Vera++ des de «%1»."
 
 #: job.cpp:152
 #, kde-format
@@ -195,7 +195,7 @@ msgstr "Prova"
 #: plugin.cpp:186
 #, kde-format
 msgid "Failed to start vera++ from \"%1\"."
-msgstr "No s'ha pogut iniciar «vera++» des de «%1»."
+msgstr "Ha fallat mentre s'iniciava «vera++» des de «%1»."
 
 #: plugin.cpp:188
 #, kde-format
